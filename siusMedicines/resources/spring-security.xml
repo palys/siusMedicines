@@ -17,14 +17,17 @@
  
 		<security:form-login 
 		    login-page="/login" 
-		    default-target-url="/user/panel" 
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
-			password-parameter="password" />
+			password-parameter="password"
+			authentication-success-handler-ref="authSuccessHandler" />
+			
 		<security:logout logout-success-url="/login?logout"  />
 		<!-- enable csrf protection -->
 		<security:csrf/>
 	</security:http>
+	
+	<bean id="authSuccessHandler" class="siusMedicines.controllers.AuthSuccessHandler" />	
  
 	<!-- Select users and user_roles from database -->
 	<security:authentication-manager>
