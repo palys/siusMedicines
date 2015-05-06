@@ -31,9 +31,9 @@
 	  <security:authentication-provider>
 		<security:jdbc-user-service data-source-ref="dataSource"
 		  users-by-username-query=
-		    "select username,password, enabled from users where username=?"
+		    "select username, password, enabled from users where username=?"
 		  authorities-by-username-query=
-		    "select username, role from user_roles where username =?  " />
+		    "select username, user_role from users where username =?  " />
 	  </security:authentication-provider>
 	</security:authentication-manager>
 	 <bean id="webSecurityExpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
