@@ -40,21 +40,23 @@ public class DoctorPanelController {
 	}
 	
 	@RequestMapping(value = "/medicines/add", method = RequestMethod.POST)
-	public ModelAndView medicinesAdd(@ModelAttribute("medicine") Medicine medicine, BindingResult bindingResult) {
+	public String medicinesAdd(@ModelAttribute("medicine") Medicine medicine, BindingResult bindingResult) {
 		medicineService.persist(medicine);
 		ModelAndView modelAndView = new ModelAndView("/doctor/medicines");
 		modelAndView.addObject("msg", "Medicine successfully added.");
-		return prepareMedicinesPanel(modelAndView);
+		//return prepareMedicinesPanel(modelAndView);
+		return "redirect:/doctor/medicines";
 	}
 	
 	@RequestMapping(value = "/medicines/remove", method = RequestMethod.GET)
-	public ModelAndView medicinesRemove(@RequestParam(value = "medicine_name", required = true) String medicineName,
+	public String medicinesRemove(@RequestParam(value = "medicine_name", required = true) String medicineName,
 			ModelAndView model) {
 		
 		medicineService.delete(medicineName);
 		ModelAndView modelAndView = new ModelAndView("/doctor/medicines");
 		modelAndView.addObject("msg", "Medicine removed");
-		return prepareMedicinesPanel(modelAndView);
+		//return prepareMedicinesPanel(modelAndView);
+		return "redirect:/doctor/medicines";
 	}
 
 }
