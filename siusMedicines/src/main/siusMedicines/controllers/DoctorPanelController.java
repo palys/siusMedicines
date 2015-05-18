@@ -5,6 +5,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import siusMedicines.model.Medicine;
@@ -42,6 +43,17 @@ public class DoctorPanelController {
 	public ModelAndView medicinesAdd(@ModelAttribute("medicine") Medicine medicine, BindingResult bindingResult) {
 		medicineService.persist(medicine);
 		ModelAndView modelAndView = new ModelAndView("/doctor/medicines");
+		modelAndView.addObject("msg", "Medicine successfully added.");
+		return prepareMedicinesPanel(modelAndView);
+	}
+	
+	@RequestMapping(value = "/medicines/remove", method = RequestMethod.GET)
+	public ModelAndView medicinesRemove(@RequestParam(value = "medicine_name", required = true) String medicineName,
+			ModelAndView model) {
+		
+		medicineService.delete(medicineName);
+		ModelAndView modelAndView = new ModelAndView("/doctor/medicines");
+		modelAndView.addObject("msg", "Medicine removed");
 		return prepareMedicinesPanel(modelAndView);
 	}
 
