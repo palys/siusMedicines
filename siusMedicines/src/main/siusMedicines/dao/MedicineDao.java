@@ -34,7 +34,7 @@ public class MedicineDao extends AbstractDao implements MedicineDaoInterface {
 	@Override
 	public List<Medicine> findAll() {
 		@SuppressWarnings("unchecked")
-		List<Medicine> medicines = (List<Medicine>) getCurrentSession().createQuery("from medicines").list();
+		List<Medicine> medicines = (List<Medicine>) getCurrentSession().createQuery("from Medicine").list();
 		return medicines;
 	}
 
