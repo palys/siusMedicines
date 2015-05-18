@@ -11,3 +11,14 @@ WITH (
 );
 ALTER TABLE users
   OWNER TO postgres;
+  
+CREATE TABLE medicines
+(
+  name character varying(45) NOT NULL,
+  CONSTRAINT medicines_pkey PRIMARY KEY (name)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE users
+  OWNER TO postgres;

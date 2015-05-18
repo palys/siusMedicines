@@ -35,6 +35,11 @@
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
 
-
+	<p>
+		<a class="btn btn-lg btn-default" href="medicines" role="button">Manage medicines</a>
+	</p>
+	<p>
+		<a class="btn btn-lg btn-default" href="patients" role="button">Manage patients</a>
+	</p>
 </body>
 </html>
