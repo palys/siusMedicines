@@ -20,26 +20,34 @@
 		<div class="row show-grid">
 			<div class="col-md-2 col-md-offset-10">
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
-			Welcome : ${pageContext.request.userPrincipal.name} | <a href="javascript:formSubmit()"> Logout</a>
+			Welcome : ${pageContext.request.userPrincipal.name} | <a
+						href="javascript:formSubmit()"> Logout</a>
 				</c:if>
 			</div>
 		</div>
 	</div>
 
-	<h2>Medicines Manager Doctor Panel</h2>
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron">
+			<h2>Medicines manager doctor panel</h2>
+		</div>
 
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
+		<c:url value="/j_spring_security_logout" var="logoutUrl" />
 
-	<!-- csrt for log out-->
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
+		<!-- csrt for log out-->
+		<form action="${logoutUrl}" method="post" id="logoutForm">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</form>
 
-	<p>
-		<a class="btn btn-lg btn-default" href="medicines" role="button">Manage medicines</a>
-	</p>
-	<p>
-		<a class="btn btn-lg btn-default" href="patients" role="button">Manage patients</a>
-	</p>
+		<p>
+			<a class="btn btn-lg btn-default" href="medicines" role="button">Manage
+				medicines</a>
+		</p>
+		<p>
+			<a class="btn btn-lg btn-default" href="patients" role="button">Manage
+				patients</a>
+		</p>
+	</div>
 </body>
 </html>

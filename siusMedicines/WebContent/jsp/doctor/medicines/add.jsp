@@ -20,32 +20,44 @@
 		<div class="row show-grid">
 			<div class="col-md-2 col-md-offset-10">
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
-			Welcome : ${pageContext.request.userPrincipal.name} | <a href="javascript:formSubmit()"> Logout</a>
+			Welcome : ${pageContext.request.userPrincipal.name} | <a
+						href="javascript:formSubmit()"> Logout</a>
 				</c:if>
 			</div>
 		</div>
 	</div>
 
-	<h2>Add Medicine</h2>
+	<div class="container theme-showcase" role="main">
 
-	<c:url value="/j_spring_security_logout" var="logoutUrl" />
+		<div class="jumbotron">
+			<h2>Add medicine</h2>
+		</div>
 
-	<!-- csrt for log out-->
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
-	
-	<div class="container">
-		<form:form modelAttribute="medicine" role="form" method="post" action="/siusMedicines/doctor/medicines/add">
-			<div class="form-group">
-				<label for="name">Name:</label>
-				<form:input path="name" type="text" class="form-control" id="name" placeholder="Enter name"></form:input>
-			</div>
-			<div class="form-actions">
-				<button type="submit" class="btn btn-lg btn-default">Add</button>
-				<a class="btn btn-lg btn-default" href="${pageContext.request.contextPath}/doctor/medicines" role="button">Cancel</a>
-			</div>
-		</form:form>
+		<c:url value="/j_spring_security_logout" var="logoutUrl" />
+
+		<!-- csrt for log out-->
+		<form action="${logoutUrl}" method="post" id="logoutForm">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</form>
+
+		<div class="container">
+			<form:form modelAttribute="medicine" role="form" method="post"
+				action="/siusMedicines/doctor/medicines/add">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<form:input path="name" type="text" class="form-control" id="name"
+						placeholder="Enter name"></form:input>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-lg btn-default">Add</button>
+					<a class="btn btn-lg btn-default"
+						href="${pageContext.request.contextPath}/doctor/medicines"
+						role="button">Cancel</a>
+				</div>
+			</form:form>
+		</div>
+
 	</div>
 
 </body>
