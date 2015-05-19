@@ -11,8 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "patients")
-public class Patient {
+@Table(name = "doctors")
+public class Doctor {
 
 	@Id
 	@Column(name = "id")
@@ -28,14 +28,14 @@ public class Patient {
 	@JoinColumn(name = "username")
 	private User user;
 	
-	@OneToMany(mappedBy = "patient")
+	@OneToMany(mappedBy = "doctor")
 	private Set<Prescription> prescriptions;
 
-	public Patient() {
+	public Doctor() {
 		
 	}
 
-	public Patient(String id, String name, String surname, User user,
+	public Doctor(String id, String name, String surname, User user,
 			Set<Prescription> prescriptions) {
 		super();
 		this.id = id;
@@ -90,5 +90,4 @@ public class Patient {
 		return "Patient [id=" + id + ", name=" + name + ", surname=" + surname
 				+ ", user=" + user + ", prescriptions=" + prescriptions + "]";
 	}
-	
 }

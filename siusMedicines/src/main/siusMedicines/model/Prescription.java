@@ -1,10 +1,13 @@
 package siusMedicines.model;
 
-import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,43 +18,33 @@ public class Prescription {
 	@Column(name = "id")
 	private String id;
 	
-	@Column(name = "patient_id")
-	private String patientId;
+	@ManyToOne
+	@JoinColumn(name = "patient_id")
+	private Patient patient;
 	
-	@Column(name = "first_portion_time")
-	private Date firstPortionTime;
+	@ManyToOne
+	@JoinColumn(name = "doctor_id")
+	private Doctor doctor;
 	
-	@Column(name = "portion_unit")
-	private String portionUnit;
+	@OneToMany(mappedBy = "prescription")
+	private Set<Portion> portions;
 	
-	@Column(name = "portion_size")
-	private double portionSize;
-	
-	@Column(name = "portions_per_day")
-	private int portionsPerDay;
-	
-	@Column(name = "minutes_between_portions")
-	private int minutesBetweenPortions;
-	
-	@Column(name = "portions_to_take")
-	private int portionsToTake;
+	@ManyToOne
+	@JoinColumn(name = "medicine_name")
+	private Medicine medicine;
 	
 	public Prescription() {
 		
 	}
 
-	public Prescription(String id, String patientId, Date firstPortionTime,
-			String portionUnit, double portionSize, int portionsPerDay,
-			int minutesBetweenPortions, int portionsToTake) {
+	public Prescription(String id, Patient patient, Doctor doctor,
+			Set<Portion> portions, Medicine medicine) {
 		super();
 		this.id = id;
-		this.patientId = patientId;
-		this.firstPortionTime = firstPortionTime;
-		this.portionUnit = portionUnit;
-		this.portionSize = portionSize;
-		this.portionsPerDay = portionsPerDay;
-		this.minutesBetweenPortions = minutesBetweenPortions;
-		this.portionsToTake = portionsToTake;
+		this.patient = patient;
+		this.doctor = doctor;
+		this.portions = portions;
+		this.medicine = medicine;
 	}
 
 	public String getId() {
@@ -62,71 +55,43 @@ public class Prescription {
 		this.id = id;
 	}
 
-	public String getPatientId() {
-		return patientId;
+	public Patient getPatient() {
+		return patient;
 	}
 
-	public void setPatientId(String patientId) {
-		this.patientId = patientId;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
-	public Date getFirstPortionTime() {
-		return firstPortionTime;
+	public Doctor getDoctor() {
+		return doctor;
 	}
 
-	public void setFirstPortionTime(Date firstPortionTime) {
-		this.firstPortionTime = firstPortionTime;
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
-	public String getPortionUnit() {
-		return portionUnit;
+	public Set<Portion> getPortions() {
+		return portions;
 	}
 
-	public void setPortionUnit(String portionUnit) {
-		this.portionUnit = portionUnit;
+	public void setPortions(Set<Portion> portions) {
+		this.portions = portions;
 	}
 
-	public double getPortionSize() {
-		return portionSize;
+	public Medicine getMedicine() {
+		return medicine;
 	}
 
-	public void setPortionSize(double portionSize) {
-		this.portionSize = portionSize;
-	}
-
-	public int getPortionsPerDay() {
-		return portionsPerDay;
-	}
-
-	public void setPortionsPerDay(int portionsPerDay) {
-		this.portionsPerDay = portionsPerDay;
-	}
-
-	public int getMinutesBetweenPortions() {
-		return minutesBetweenPortions;
-	}
-
-	public void setMinutesBetweenPortions(int minutesBetweenPortions) {
-		this.minutesBetweenPortions = minutesBetweenPortions;
-	}
-
-	public int getPortionsToTake() {
-		return portionsToTake;
-	}
-
-	public void setPortionsToTake(int portionsToTake) {
-		this.portionsToTake = portionsToTake;
+	public void setMedicine(Medicine medicine) {
+		this.medicine = medicine;
 	}
 
 	@Override
 	public String toString() {
-		return "Prescription [id=" + id + ", patientId=" + patientId
-				+ ", firstPortionTime=" + firstPortionTime + ", portionUnit="
-				+ portionUnit + ", portionSize=" + portionSize
-				+ ", portionsPerDay=" + portionsPerDay
-				+ ", minutesBetweenPortions=" + minutesBetweenPortions
-				+ ", portionsToTake=" + portionsToTake + "]";
+		return "Prescription [id=" + id + ", patient=" + patient + ", doctor="
+				+ doctor + ", portions=" + portions + ", medicine=" + medicine
+				+ "]";
 	}
-	
-	
+
 }
