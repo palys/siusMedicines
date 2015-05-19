@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,8 +16,9 @@ import javax.persistence.Table;
 public class Doctor {
 
 	@Id
+	@GeneratedValue
 	@Column(name = "id")
-	private String id;
+	private Long id;
 	
 	@Column(name = "name")
 	private String name;
@@ -35,7 +37,7 @@ public class Doctor {
 		
 	}
 
-	public Doctor(String id, String name, String surname, User user,
+	public Doctor(Long id, String name, String surname, User user,
 			Set<Prescription> prescriptions) {
 		super();
 		this.id = id;
@@ -45,11 +47,11 @@ public class Doctor {
 		this.prescriptions = prescriptions;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

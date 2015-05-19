@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,8 +15,9 @@ import javax.persistence.Table;
 public class Portion {
 
 	@Id
+	@GeneratedValue
 	@Column(name = "id")
-	private String id;
+	private Long id;
 	
 	@Column(name = "unit")
 	private String unit;
@@ -37,7 +39,7 @@ public class Portion {
 		
 	}
 
-	public Portion(String id, String unit, double size, Date takeTime,
+	public Portion(Long id, String unit, double size, Date takeTime,
 			boolean taken, Prescription prescription) {
 		super();
 		this.id = id;
@@ -48,11 +50,11 @@ public class Portion {
 		this.prescription = prescription;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
