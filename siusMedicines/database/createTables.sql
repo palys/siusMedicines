@@ -70,7 +70,7 @@ CREATE TABLE portions
   id SERIAL,
   unit character varying(45),
   size real,
-  take_time date,
+  take_time timestamp,
   taken boolean,
   prescription_id integer references prescriptions (id),
   CONSTRAINT portions_pkey PRIMARY KEY (id)
