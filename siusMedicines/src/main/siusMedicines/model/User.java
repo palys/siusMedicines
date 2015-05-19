@@ -3,6 +3,8 @@ package siusMedicines.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,17 +24,27 @@ public class User {
 	@Column(name = "enabled")
 	private boolean enabled;
 	
+	@OneToOne
+	@JoinColumn(name = "user")
+	private Patient patient;
+	
+	@OneToOne
+	@JoinColumn(name = "user")
+	private Doctor doctor;
+	
 	public User() {
 		
 	}
 
 	public User(String username, String password, String userRole,
-			boolean enabled) {
+			boolean enabled, Patient patient, Doctor doctor) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.userRole = userRole;
 		this.enabled = enabled;
+		this.patient = patient;
+		this.doctor = doctor;
 	}
 
 	public String getUsername() {
@@ -65,6 +77,22 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
 	@Override
