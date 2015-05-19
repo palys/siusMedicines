@@ -13,5 +13,10 @@
    <property name="show_sql">false</property>
    <property name="hibernate.current_session_context_class">thread</property>
    <mapping class="siusMedicines.model.Medicine"/>
+   <mapping class="siusMedicines.model.Doctor"/>
+   <mapping class="siusMedicines.model.Patient"/>
+   <mapping class="siusMedicines.model.User"/>
+   <mapping class="siusMedicines.model.Prescription"/>
+   <mapping class="siusMedicines.model.Portion"/>
 </session-factory>
 </hibernate-configuration>
