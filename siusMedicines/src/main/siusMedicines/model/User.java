@@ -1,10 +1,11 @@
 package siusMedicines.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,27 +25,25 @@ public class User {
 	@Column(name = "enabled")
 	private boolean enabled;
 	
-	@OneToOne
-	@JoinColumn(name = "user")
-	private Patient patient;
+	@OneToMany(mappedBy = "user")
+	private Set<Patient> patients;
 	
-	@OneToOne
-	@JoinColumn(name = "user")
-	private Doctor doctor;
+	@OneToMany(mappedBy = "user")
+	private Set<Doctor> doctors;
 	
 	public User() {
 		
 	}
 
 	public User(String username, String password, String userRole,
-			boolean enabled, Patient patient, Doctor doctor) {
+			boolean enabled, Set<Patient> patients, Set<Doctor> doctors) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.userRole = userRole;
 		this.enabled = enabled;
-		this.patient = patient;
-		this.doctor = doctor;
+		this.patients = patients;
+		this.doctors = doctors;
 	}
 
 	public String getUsername() {
@@ -79,20 +78,20 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public Patient getPatient() {
-		return patient;
+	public Set<Patient> getPatients() {
+		return patients;
 	}
 
-	public void setPatient(Patient patient) {
-		this.patient = patient;
+	public void setPatients(Set<Patient> patients) {
+		this.patients = patients;
 	}
 
-	public Doctor getDoctor() {
-		return doctor;
+	public Set<Doctor> getDoctors() {
+		return doctors;
 	}
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
+	public void setDoctors(Set<Doctor> doctors) {
+		this.doctors = doctors;
 	}
 
 	@Override
