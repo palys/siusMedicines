@@ -2,8 +2,10 @@ package siusMedicines.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,11 +28,11 @@ public class Doctor {
 	@Column(name = "surname")
 	private String surname;
 	
-	@OneToOne
+	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinColumn(name = "username")
 	private User user;
 	
-	@OneToMany(mappedBy = "doctor")
+	@OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Prescription> prescriptions;
 
 	public Doctor() {

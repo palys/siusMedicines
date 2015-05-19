@@ -50,6 +50,23 @@
 			<a class="btn btn-lg btn-default"
 				href="${pageContext.request.contextPath}/doctor/patients" role="button">Back</a>
 		</p>
+		
+		<div class="container">
+			<form:form modelAttribute="medicine" role="form" method="post"
+				action="/siusMedicines/doctor/patients/prescriptions/add?patient_id=${patient_id}">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<form:select path="name" class="form-control" id="name">
+						<c:forEach items="${medicines}" var="med" varStatus="loop"> 
+						 	<form:option value="${med.name}"><c:out value="${med.name}"/></form:option>
+						</c:forEach>
+					</form:select>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-lg btn-default">Add</button>
+				</div>
+			</form:form>
+		</div>
 
 		<div class="tab-content">
 			<div id="patients_table" class="tab-pane fade in active">
