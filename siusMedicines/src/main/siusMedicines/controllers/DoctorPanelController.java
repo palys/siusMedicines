@@ -1,5 +1,7 @@
 package siusMedicines.controllers;
 
+import java.util.Collections;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Lists;
+
 import siusMedicines.model.Medicine;
 import siusMedicines.model.Patient;
+import siusMedicines.model.Prescription;
 import siusMedicines.service.MedicineService;
 import siusMedicines.service.PatientService;
 import siusMedicines.service.UserService;
@@ -97,6 +102,13 @@ public class DoctorPanelController {
 		ModelAndView modelAndView = new ModelAndView("/doctor/medicines");
 		modelAndView.addObject("msg", "Medicine removed");
 		return "redirect:/doctor/medicines";
+	}
+	
+	@RequestMapping(value = "/patients/prescriptions", method = RequestMethod.GET)
+	public ModelAndView preparePrescriptions(ModelAndView modelAndView) {
+		modelAndView.addObject("prescriptions", Lists.newArrayList(new Prescription(0l, null, null, Collections.EMPTY_SET, new Medicine("Lek1", Collections.EMPTY_SET)),
+				new Prescription(0l, null, null, Collections.EMPTY_SET, new Medicine("Lek2", Collections.EMPTY_SET))));
+		return modelAndView;
 	}
 
 }

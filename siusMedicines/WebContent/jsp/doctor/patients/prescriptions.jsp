@@ -31,7 +31,7 @@
 	<div class="container theme-showcase" role="main">
 	
 		<div class="jumbotron">
-			<h2>Manage patients</h2>
+			<h2>Prescripions</h2>
 		</div>
 
 		<c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -47,36 +47,32 @@
 
 
 		<p>
-			<a class="btn btn-lg btn-default" href="patients/add" role="button">Add</a>
 			<a class="btn btn-lg btn-default"
-				href="${pageContext.request.contextPath}/doctor/panel" role="button">Back</a>
+				href="${pageContext.request.contextPath}/doctor/patients" role="button">Back</a>
 		</p>
 
 		<div class="tab-content">
 			<div id="patients_table" class="tab-pane fade in active">
 				<div class="panel panel-default">
-					<div class="panel-heading">Patients</div>
+					<div class="panel-heading">Prescriptions</div>
 					<table class="table table-hover">
 						<col width="50%">
-						<col width="35%">
-						<col width="5%">
+						<col width="20%">
+						<col width="20%">
 						<col width="5%">
 						<col width="5%">
 						<tr>
-							<th>Name</th>
-							<th>Surname</th>
-							<th></th>
+							<th>Medicine</th>
+							<th>Total number of portions</th>
+							<th>Portions left</th>
 							<th></th>
 						</tr>
-						<c:forEach items="${patients}" var="patients_list"
+						<c:forEach items="${prescriptions}" var="prescriptions_list"
 							varStatus="loop">
 							<tr>
-								<td><c:out value="${patients_list.name}" /></td>
-								<td><c:out value="${patients_list.surname}" /></td>
-								<td><a class="btn btn-default"
-									href="${pageContext.request.contextPath}/doctor/patients/prescriptions?patient_id=${patients_list.id}">
-										<span class="glyphicon glyphicon-list-alt"></span>
-								</a></td>
+								<td><c:out value="${prescriptions_list.medicine.name}" /></td>
+								<td><c:out value="0" /></td>
+								<td><c:out value="0"/></td>
 								<td><a class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/patients/add?patient_id=${patients_list.id}">
 										<span class="glyphicon glyphicon-pencil"></span>
