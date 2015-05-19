@@ -21,7 +21,7 @@ public class PrescriptionsController {
 	
 	private PatientService patientService = new PatientService();
 	
-	private final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+	private final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView preparePrescriptions(@RequestParam(value = "patient_id", required = true) String patientId, ModelAndView modelAndView) {

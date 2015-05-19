@@ -1,6 +1,7 @@
 package siusMedicines.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class Portion {
 	private double size;
 	
 	@Column(name = "take_time")
-	private Date takeTime;
+	private Timestamp takeTime;
 	
 	@Column(name = "taken")
 	private boolean taken;
@@ -39,7 +40,7 @@ public class Portion {
 		
 	}
 
-	public Portion(Long id, String unit, double size, Date takeTime,
+	public Portion(Long id, String unit, double size, Timestamp takeTime,
 			boolean taken, Prescription prescription) {
 		super();
 		this.id = id;
@@ -74,11 +75,11 @@ public class Portion {
 		this.size = size;
 	}
 
-	public Date getTakeTime() {
+	public Timestamp getTakeTime() {
 		return takeTime;
 	}
 
-	public void setTakeTime(Date takeTime) {
+	public void setTakeTime(Timestamp takeTime) {
 		this.takeTime = takeTime;
 	}
 
