@@ -9,13 +9,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import siusMedicines.model.Medicine;
+import siusMedicines.model.Patient;
 import siusMedicines.service.MedicineService;
+import siusMedicines.service.PatientService;
+import siusMedicines.service.UserService;
 
 @Controller
 @RequestMapping("doctor")
 public class DoctorPanelController {
 	
 	public static MedicineService medicineService = new MedicineService();
+	
+	public static PatientService patientService = new PatientService();
+	
+	public static UserService userService = new UserService();
 	
 	@RequestMapping(value = "/panel", method = RequestMethod.GET) 
 	public ModelAndView preparePanel(ModelAndView modelAndView) {
@@ -30,6 +37,7 @@ public class DoctorPanelController {
 	
 	@RequestMapping(value = "/patients", method = RequestMethod.GET)
 	public ModelAndView preparePatientsPanel(ModelAndView modelAndView) {
+		modelAndView.addObject("patients", patientService.findAll());
 		return modelAndView;
 	}
 	
@@ -44,8 +52,30 @@ public class DoctorPanelController {
 		medicineService.persist(medicine);
 		ModelAndView modelAndView = new ModelAndView("/doctor/medicines");
 		modelAndView.addObject("msg", "Medicine successfully added.");
-		//return prepareMedicinesPanel(modelAndView);
 		return "redirect:/doctor/medicines";
+	}
+	
+	@RequestMapping(value = "/patients/add", method = RequestMethod.GET)
+	public ModelAndView preparePatientsAddPanel(@RequestParam(value = "patient_id", required = false) String patientId, ModelAndView modelAndView) {
+		if (patientId == null) {
+			modelAndView.addObject("patient", new Patient());
+		} else {
+			//TODO get from database
+			modelAndView.addObject("patient", new Patient());
+		}
+		System.out.println(modelAndView.getModelMap().get("patient"));
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/patients/add", method = RequestMethod.POST)
+	public String patientsAdd(@ModelAttribute("patient") Patient patient, BindingResult bindingResult) {
+		patient.getUser().setEnabled(true);
+		patient.getUser().setUserRole("ROLE_PATIENT");
+		userService.persist(patient.getUser());// FIXME
+		patientService.persist(patient);
+		ModelAndView modelAndView = new ModelAndView("/doctor/patients");
+		modelAndView.addObject("msg", "Patient successfully added.");
+		return "redirect:/doctor/patients";
 	}
 	
 	@RequestMapping(value = "/medicines/remove", method = RequestMethod.GET)
