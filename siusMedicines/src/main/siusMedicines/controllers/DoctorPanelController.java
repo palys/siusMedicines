@@ -71,7 +71,7 @@ public class DoctorPanelController {
 	public String patientsAdd(@ModelAttribute("patient") Patient patient, BindingResult bindingResult) {
 		patient.getUser().setEnabled(true);
 		patient.getUser().setUserRole("ROLE_PATIENT");
-		userService.persist(patient.getUser());// FIXME
+		//userService.persist(patient.getUser());// FIXME
 		patientService.persist(patient);
 		ModelAndView modelAndView = new ModelAndView("/doctor/patients");
 		modelAndView.addObject("msg", "Patient successfully added.");
