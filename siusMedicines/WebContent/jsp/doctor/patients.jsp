@@ -53,7 +53,7 @@
 		</p>
 
 		<div class="tab-content">
-			<div id="delete_medicine" class="tab-pane fade in active">
+			<div id="patients_table" class="tab-pane fade in active">
 				<div class="panel panel-default">
 					<div class="panel-heading">Patients</div>
 					<table class="table table-hover">
@@ -82,7 +82,7 @@
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a></td>
 								<td><a class="btn btn-default"
-									href="${pageContext.request.contextPath}/doctor/patients/delete?patient_id=${patients_list.id}">
+									href="${pageContext.request.contextPath}/doctor/patients/remove?patient_id=${patients_list.id}">
 										<span class="glyphicon glyphicon-remove"></span>
 								</a></td>
 							</tr>

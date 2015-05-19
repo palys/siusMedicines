@@ -60,21 +60,32 @@ public class DoctorPanelController {
 		if (patientId == null) {
 			modelAndView.addObject("patient", new Patient());
 		} else {
-			//TODO get from database
-			modelAndView.addObject("patient", new Patient());
+			modelAndView.addObject("patient", patientService.findById(Long.parseLong(patientId)));
 		}
-		System.out.println(modelAndView.getModelMap().get("patient"));
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/patients/add", method = RequestMethod.POST)
 	public String patientsAdd(@ModelAttribute("patient") Patient patient, BindingResult bindingResult) {
-		patient.getUser().setEnabled(true);
-		patient.getUser().setUserRole("ROLE_PATIENT");
-		//userService.persist(patient.getUser());// FIXME
-		patientService.persist(patient);
+		if (userService.findById(patient.getUser().getUsername()) != null) {
+			patientService.update(patient);
+		} else {
+			patient.getUser().setEnabled(true);
+			patient.getUser().setUserRole("ROLE_PATIENT");
+			patientService.persist(patient);
+			ModelAndView modelAndView = new ModelAndView("/doctor/patients");
+			modelAndView.addObject("msg", "Patient successfully added.");
+		}
+		return "redirect:/doctor/patients";
+	}
+	
+	@RequestMapping(value = "/patients/remove", method = RequestMethod.GET)
+	public String patientRemove(@RequestParam(value = "patient_id", required = true) Long id,
+			ModelAndView model) {
+		
+		patientService.delete(id);
 		ModelAndView modelAndView = new ModelAndView("/doctor/patients");
-		modelAndView.addObject("msg", "Patient successfully added.");
+		modelAndView.addObject("msg", "Patients removed");
 		return "redirect:/doctor/patients";
 	}
 	
@@ -85,7 +96,6 @@ public class DoctorPanelController {
 		medicineService.delete(medicineName);
 		ModelAndView modelAndView = new ModelAndView("/doctor/medicines");
 		modelAndView.addObject("msg", "Medicine removed");
-		//return prepareMedicinesPanel(modelAndView);
 		return "redirect:/doctor/medicines";
 	}
 

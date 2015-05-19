@@ -65,7 +65,12 @@
 						placeholder="Enter password" value="${patient.user.password}"></form:input>
 				</div>
 				<div class="form-actions">
-					<button type="submit" class="btn btn-lg btn-default">Add</button>
+					<c:if test="${patient.name == null}">
+						<button type="submit" class="btn btn-lg btn-default">Add</button>
+					</c:if>
+					<c:if test="${patient.name != null}">
+						<button type="submit" class="btn btn-lg btn-default">Update</button>
+					</c:if>
 					<a class="btn btn-lg btn-default"
 						href="${pageContext.request.contextPath}/doctor/patients"
 						role="button">Cancel</a>
