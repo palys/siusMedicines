@@ -30,7 +30,7 @@ public class Prescription {
 	@JoinColumn(name = "doctor_id")
 	private Doctor doctor;
 	
-	@OneToMany(mappedBy = "prescription", fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@OneToMany(mappedBy = "prescription", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Portion> portions;
 	
 	@ManyToOne

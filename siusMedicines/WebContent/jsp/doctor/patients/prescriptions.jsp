@@ -56,23 +56,26 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Prescriptions</div>
 					<table class="table table-hover">
-						<col width="50%">
-						<col width="20%">
-						<col width="20%">
+						<col width="30%">
+						<col width="30%">
+						<col width="15%">
+						<col width="15%">
 						<col width="5%">
 						<col width="5%">
 						<tr>
 							<th>Medicine</th>
-							<th>Total number of portions</th>
+							<th>Next portion</th>
 							<th>Portions left</th>
+							<th>Total number of portions</th>
 							<th></th>
 						</tr>
 						<c:forEach items="${prescriptions}" var="prescriptions_list"
 							varStatus="loop">
 							<tr>
-								<td><c:out value="${prescriptions_list.medicine.name}" /></td>
-								<td><c:out value="0" /></td>
-								<td><c:out value="0"/></td>
+								<td><c:out value="${prescriptions_list.prescription.medicine.name}" /></td>
+								<td><c:out value="${prescriptions_list.nextPortion}"/></td>
+								<td><c:out value="${prescriptions_list.portionsLeft}"/></td>
+								<td><c:out value="${prescriptions_list.totalPortionsNumber}" /></td>
 								<td><a class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/patients/add?patient_id=${patients_list.id}">
 										<span class="glyphicon glyphicon-pencil"></span>

@@ -32,7 +32,7 @@ public class Patient {
 	@JoinColumn(name = "username")
 	private User user;
 	
-	@OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Prescription> prescriptions;
 
 	public Patient() {
