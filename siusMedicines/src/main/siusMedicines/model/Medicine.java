@@ -17,7 +17,7 @@ public class Medicine {
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany(mappedBy = "medicines")
+	@OneToMany(mappedBy = "medicine")
 	private Set<Prescription> prescriptions;
 	
 	public Medicine() {

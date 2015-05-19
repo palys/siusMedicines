@@ -28,7 +28,7 @@ public class Prescription {
 	@JoinColumn(name = "doctor_id")
 	private Doctor doctor;
 	
-	@OneToMany(mappedBy = "prescriptions")
+	@OneToMany(mappedBy = "prescription")
 	private Set<Portion> portions;
 	
 	@ManyToOne
