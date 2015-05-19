@@ -1,9 +1,7 @@
 package siusMedicines.controllers.doctor.patients.prescriptions;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,25 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import siusMedicines.model.Medicine;
 import siusMedicines.model.Patient;
 import siusMedicines.model.Prescription;
 import siusMedicines.service.PatientService;
-import siusMedicines.service.PrescriptionService;
-
-import com.google.common.collect.Lists;
 
 @Controller
 @RequestMapping("doctor/patients/prescriptions")
 public class PrescriptionsController {
 	
-	private PrescriptionService prescriptionService = new PrescriptionService();
-	
 	private PatientService patientService = new PatientService();
 	
 	private final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView preparePrescriptions(@RequestParam(value = "patient_id", required = true) String patientId, ModelAndView modelAndView) {
 		
@@ -50,9 +41,9 @@ public class PrescriptionsController {
 		for (Prescription p : prescriptions) {
 			PrescriptionHolder h = new PrescriptionHolder();
 			h.setPrescription(p);
-			h.setPortionsLeft(0);
-			h.setTotalPortionsNumber(10);
-			h.setNextPortion(format.format(new Date(System.currentTimeMillis())));
+			h.setPortionsLeft(p.portionsLeft());
+			h.setTotalPortionsNumber(p.totalPortions());
+			h.setNextPortion(format.format(p.nextPortionDate()));
 			holders.add(h);
 		}
 		

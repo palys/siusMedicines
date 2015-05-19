@@ -1,5 +1,6 @@
 package siusMedicines.model;
 
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -89,6 +90,40 @@ public class Prescription {
 
 	public void setMedicine(Medicine medicine) {
 		this.medicine = medicine;
+	}
+	
+	public int portionsLeft() {
+		int count = 0;
+		Date currentTime = new Date(System.currentTimeMillis());
+		for (Portion p : portions) {
+			if (!p.isTaken() && p.getTakeTime().after(currentTime)) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public int totalPortions() {
+		return portions.size();
+	}
+	
+	public Date nextPortionDate() {
+		Date nextPortionDate = new Date(0);
+		Date currentTime = new Date(System.currentTimeMillis());
+		if (portionsLeft() != 0) {
+			for (Portion p : portions) {
+				if (!p.isTaken() && currentTime.before(p.getTakeTime())) {
+					nextPortionDate = p.getTakeTime();
+				}
+			}
+			
+			for (Portion p : portions) {
+				if (nextPortionDate.before(p.getTakeTime()) && !p.isTaken()) {
+					nextPortionDate = p.getTakeTime();
+				}
+			}
+		}
+		return nextPortionDate;
 	}
 
 	@Override
