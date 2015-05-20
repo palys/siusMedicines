@@ -70,6 +70,7 @@ public class PatientPanelController {
 					Timestamp t = new Timestamp(System.currentTimeMillis());
 					if(portion.getTakeTime().before(t)) {
 						unchecked_p.add(portion);
+						historical.add(portion);
 					} else {
 						portionsToTake.add(portion);
 					}
@@ -101,8 +102,7 @@ public class PatientPanelController {
 			}
 			
 		});
-	
-		System.out.println("h=" + historical.size() + " u=" + unchecked_p.size() + " s=" + portionsToTake.size());
+		
 		if(historical.size() != 0) {
 			historicalPortions.addAll(historical);
 		}

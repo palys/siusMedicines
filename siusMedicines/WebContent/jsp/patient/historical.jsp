@@ -50,15 +50,17 @@
 					</c:if>
 					<c:if test="${historical_portions_count != 0}">
 						<table class="table table-hover">
-							<col width="30%">
-							<col width="35%">
-							<col width="20%">
+							<col width="25%">
+							<col width="32%">
 							<col width="15%">
+							<col width="20%">
+							<col width="8%">
 							<tr>
 								<th>Date and Time</th>
 								<th>Medicine name</th>
 								<th>Quantity</th>
 								<th></th>
+								<th>Taken</th>
 							</tr>
 							<c:forEach items="${historical_portions}" var="portion_item"
 								varStatus="loop">
@@ -67,6 +69,12 @@
 									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp; &nbsp; <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
 									<td><c:out value="${portion_item.size}" /> <c:out value="${portion_item.unit}" /></td>
 									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp; 2h After Meal</td>
+									<c:if test="${portion_item.taken == true}">
+										<td>&nbsp; &nbsp;<span title="Taken" class="glyphicon glyphicon-ok"></span></td>
+									</c:if>
+									<c:if test="${portion_item.taken == false}">
+										<td>&nbsp; &nbsp;<span title="Taken" class="glyphicon glyphicon-remove"></span></td>
+									</c:if>
 								</tr>
 							</c:forEach>
 						</table>

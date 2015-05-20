@@ -48,7 +48,7 @@
 										<span title="Emergency" class="glyphicon glyphicon-earphone"></span>&nbsp; Emergency Call</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
 										<span title="Patient" class="glyphicon glyphicon-user"></span>&nbsp; Show Personal Data</a>
-		<a class="btn btn-lg btn-default" href="historical" role="button">
+		<a class="btn btn-lg btn-default" href="javascript:formSubmit()" role="button">
 										<span title="Logout" class="glyphicon glyphicon-off"></span>&nbsp; Logout&nbsp;</a>
 		</p>
 		
