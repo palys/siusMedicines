@@ -1,8 +1,12 @@
 package siusMedicines.controllers.doctor.patients.prescriptions;
 
 import java.security.Principal;
+import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import siusMedicines.model.Doctor;
 import siusMedicines.model.Medicine;
 import siusMedicines.model.Patient;
+import siusMedicines.model.Portion;
 import siusMedicines.model.Prescription;
 import siusMedicines.model.User;
 import siusMedicines.service.MedicineService;
@@ -75,7 +80,30 @@ public class PrescriptionsController {
 			Principal user, ModelAndView modelAndView) {
 		Prescription prescription = prescriptionService.findById(Long.parseLong(prescriptionId));
 		modelAndView.addObject("prescription", prescription);
+		modelAndView.addObject("portions", preparePortionHolders(prescription.getPortions()));
 		return modelAndView;
+	}
+	
+	private List<PortionsHolder> preparePortionHolders(Collection<Portion> portions) {
+		List<PortionsHolder> holders = new ArrayList<PortionsHolder>();
+		Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+		DecimalFormat df = new DecimalFormat("#.##");
+		
+		for (Portion p : portions) {
+			PortionsHolder h = new PortionsHolder();
+			h.setId(p.getId());
+			h.setUnit(p.getUnit());
+			h.setSize(df.format(p.getSize()));
+			h.setTakeTime(p.getTakeTime());
+			h.setTaken(p.isTaken());
+			h.setShouldBeTaken(!p.isTaken() && currentTimestamp.after(p.getTakeTime()));
+			h.setShowWarning(!h.isTaken() && h.isShouldBeTaken());
+			
+			holders.add(h);
+		}
+		
+		Collections.sort(holders);
+		return holders;
 	}
 	
 	private List<PrescriptionHolder> preparePrescriptions(Collection<Prescription> prescriptions) {

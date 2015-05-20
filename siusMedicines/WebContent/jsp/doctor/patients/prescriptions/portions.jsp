@@ -54,24 +54,29 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Prescriptions</div>
 					<table class="table table-hover">
-						<col width="25%">
-						<col width="25%">
-						<col width="25%">
-						<col width="25%">
+						<col width="30%">
+						<col width="20%">
+						<col width="20%">
+						<col width="10%">
+						<col width="10%">
+						<col width="10%">
 						<tr>
 							<th>Time to take</th>
 							<th>Unit</th>
 							<th>Size</th>
 							<th>Is taken?</th>
+							<th>Should have been taken?</th>
 							<th></th>
 						</tr>
-						<c:forEach items="${prescription.portions}" var="portion"
+						<c:forEach items="${portions}" var="portion"
 							varStatus="loop">
 							<tr>
 								<td><c:out value="${portion.takeTime}" /></td>
 								<td><c:out value="${portion.unit}"/></td>
 								<td><c:out value="${portion.size}"/></td>
 								<td><c:out value="${portion.taken}" /></td>
+								<td><c:out value="${portion.shouldBeTaken}" /></td>
+								<td><c:if test="${portion.showWarning}"><span class="glyphicon glyphicon-exclamation-sign"></span></c:if></td>
 							</tr>
 						</c:forEach>
 					</table>
