@@ -46,7 +46,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Historical Medicines</div>
 					<c:if test="${historical_portions_count == 0}">
-						<p> <br>&nbsp &nbsp No historical medicines</p>
+						<p> <br>&nbsp; &nbsp; No historical medicines</p>
 					</c:if>
 					<c:if test="${historical_portions_count != 0}">
 						<table class="table table-hover">
@@ -63,10 +63,10 @@
 							<c:forEach items="${historical_portions}" var="portion_item"
 								varStatus="loop">
 								<tr>
-									<td><span title="Taking Time" class="glyphicon glyphicon-time"></span>&nbsp &nbsp<c:out value="${portion_item.takeTime}" /></td>
-									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp &nbsp <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
+									<td><span title="Taking Time" class="glyphicon glyphicon-time"></span>&nbsp; &nbsp;<c:out value="${portion_item.takeTime}" /></td>
+									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp; &nbsp; <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
 									<td><c:out value="${portion_item.size}" /> <c:out value="${portion_item.unit}" /></td>
-									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp &nbsp 2h After Meal</td>
+									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp; 2h After Meal</td>
 								</tr>
 							</c:forEach>
 						</table>

@@ -39,17 +39,17 @@
 		
 		<p>
 			<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Calendar" class="glyphicon glyphicon-calendar"></span>&nbsp Show Calendar View</a>
+										<span title="Calendar" class="glyphicon glyphicon-calendar"></span>&nbsp; Show Calendar View</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="History" class="glyphicon glyphicon-check"></span>&nbsp Show History</a>
+										<span title="History" class="glyphicon glyphicon-check"></span>&nbsp; Show History</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Contact" class="glyphicon glyphicon-envelope"></span>&nbsp Contact Doctor</a>
+										<span title="Contact" class="glyphicon glyphicon-envelope"></span>&nbsp; Contact Doctor</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Emergency" class="glyphicon glyphicon-earphone"></span>&nbsp Emergency Call</a>
+										<span title="Emergency" class="glyphicon glyphicon-earphone"></span>&nbsp; Emergency Call</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Patient" class="glyphicon glyphicon-user"></span>&nbsp Show Personal Data</a>
+										<span title="Patient" class="glyphicon glyphicon-user"></span>&nbsp; Show Personal Data</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Logout" class="glyphicon glyphicon-off"></span>&nbsp Logout&nbsp</a>
+										<span title="Logout" class="glyphicon glyphicon-off"></span>&nbsp; Logout&nbsp;</a>
 		</p>
 		
 		<div class="tab-content">
@@ -57,7 +57,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Confirmation List</div>
 					<c:if test="${unchecked_portions_count == 0}">
-						<p> <br>&nbsp &nbsp No portions to confirm</p>
+						<p> <br>&nbsp; &nbsp; No portions to confirm</p>
 					</c:if>
 					<c:if test="${unchecked_portions_count != 0}">
 						<table class="table table-hover">
@@ -78,10 +78,10 @@
 								varStatus="loop">
 								<tr>
 									<td>
-										&nbsp<span title="Require Confirmation" class="glyphicon glyphicon-warning-sigglyphicon glyphicon-flash"></span>
+										&nbsp;<span title="Require Confirmation" class="glyphicon glyphicon-warning-sigglyphicon glyphicon-flash"></span>
 									</td>
 									<td><c:out value="${portion_item.takeTime}" /></td>
-									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp &nbsp <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
+									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp; &nbsp; <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
 									<td><c:out value="${portion_item.size}" /> <c:out value="${portion_item.unit}" /></td>
 									<td>
 										<span title="Confirm" class="glyphicon glyphicon-ok"></span>
@@ -102,7 +102,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Scheduled Medicines</div>
 					<c:if test="${scheduled_portions_count == 0}">
-						<p> <br>&nbsp &nbsp No medicines scheduled</p>
+						<p> <br>&nbsp; &nbsp; No medicines scheduled</p>
 					</c:if>
 					<c:if test="${scheduled_portions_count != 0}">
 						<table class="table table-hover">
@@ -119,10 +119,10 @@
 							<c:forEach items="${scheduled_portions}" var="portion_item"
 								varStatus="loop">
 								<tr>
-									<td><span title="Taking Time" class="glyphicon glyphicon-time"></span>&nbsp &nbsp<c:out value="${portion_item.takeTime}" /></td>
-									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp &nbsp <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
+									<td><span title="Taking Time" class="glyphicon glyphicon-time"></span>&nbsp; &nbsp;<c:out value="${portion_item.takeTime}" /></td>
+									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp; &nbsp; <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
 									<td><c:out value="${portion_item.size}" /> <c:out value="${portion_item.unit}" /></td>
-									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp &nbsp 2h After Meal</td>
+									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp; 2h After Meal</td>
 								</tr>
 							</c:forEach>
 						</table>
