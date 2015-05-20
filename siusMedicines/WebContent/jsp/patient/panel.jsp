@@ -20,6 +20,8 @@
 		$(document).ready(function() {
 			$('[data-toggle="popover"]').popover({target: "hover"}).on('mouseleave',function() {
 				$('[data-toggle="popover"]').popover('hide');
+			}).on('mouseenter',function() {
+				$(this).popover('show');
 			});
 		     $('#confirmTaking').css("top", "30%");
 		     $('#disclaimTaking').css("top", "30%");
@@ -172,7 +174,7 @@
 			</div>
 		</div>
 		<p style="text-align: right">
-			<a class="btn btn-sm btn-default" href="medicines" role="button">Show
+			<a class="btn btn-sm btn-default" href="all" role="button">Show
 				All</a>
 		</p>
 

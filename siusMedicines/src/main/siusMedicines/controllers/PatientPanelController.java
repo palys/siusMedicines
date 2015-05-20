@@ -48,6 +48,16 @@ public class PatientPanelController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	public ModelAndView prepareScheduledPanel(ModelAndView modelAndView, Principal user) {
+		List<List<Portion>> portions = evaluate(user);
+		List<Portion> scheduled = getPortions(portions.get(2),portions.get(2).size());
+		modelAndView.addObject("scheduled_portions", scheduled);
+		modelAndView.addObject("scheduled_portions_count", scheduled.size());
+
+		return modelAndView;
+	}
+	
 	private List<List<Portion>> evaluate(Principal user) {
 		
 		List<Portion> historical = new LinkedList<>();
