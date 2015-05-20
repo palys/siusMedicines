@@ -47,6 +47,7 @@
 		<p>
 			<a class="btn btn-lg btn-default"
 				href="${pageContext.request.contextPath}/doctor/patients/prescriptions?patient_id=${pageContext.request.parameterMap['patient_id'][0]}" role="button">Back</a>
+			<a class="btn btn-lg btn-default" href="${pageContext.request.contextPath}/doctor/patients/prescriptions/portions/add?patient_id=${pageContext.request.parameterMap['patient_id'][0]}&prescription_id=${prescription.id}" role="button">&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;</a>
 		</p>
 
 		<div class="tab-content">

@@ -130,8 +130,7 @@ public class Prescription {
 
 	@Override
 	public String toString() {
-		return "Prescription [id=" + id + ", patient=" + patient + ", doctor="
-				+ doctor + ", portions=" + portions + ", medicine=" + medicine
+		return "Prescription [id=" + id + ", portions=" + portions + ", medicine=" + medicine
 				+ "]";
 	}
 

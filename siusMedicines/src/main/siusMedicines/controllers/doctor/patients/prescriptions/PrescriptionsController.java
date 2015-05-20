@@ -3,6 +3,7 @@ package siusMedicines.controllers.doctor.patients.prescriptions;
 import java.security.Principal;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +27,7 @@ import siusMedicines.model.Prescription;
 import siusMedicines.model.User;
 import siusMedicines.service.MedicineService;
 import siusMedicines.service.PatientService;
+import siusMedicines.service.PortionService;
 import siusMedicines.service.PrescriptionService;
 import siusMedicines.service.UserService;
 
@@ -40,6 +42,8 @@ public class PrescriptionsController {
 	private UserService userService = new UserService();
 	
 	private PrescriptionService prescriptionService = new PrescriptionService();
+	
+	private PortionService portionService = new PortionService();
 	
 	private final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
  
@@ -82,6 +86,47 @@ public class PrescriptionsController {
 		modelAndView.addObject("prescription", prescription);
 		modelAndView.addObject("portions", preparePortionHolders(prescription.getPortions()));
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/portions/add", method = RequestMethod.GET)
+	public ModelAndView preparePortionsAddPage(@RequestParam(value = "patient_id") String patientId,
+			@RequestParam(value = "prescription_id") String prescriptionId,
+			Principal user, ModelAndView modelAndView) {
+		Prescription prescription = prescriptionService.findById(Long.parseLong(prescriptionId));
+		modelAndView.addObject("prescription", prescription);
+		modelAndView.addObject("portionWithFrequencyHolder", new PortionWithFrequencyHolder());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/portions/add", method = RequestMethod.POST)
+	public String portionsAdd(@ModelAttribute("portionWithFrequencyHolder") PortionWithFrequencyHolder p,
+			BindingResult bindingResult) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		long startTime = 0;
+		
+		try {
+			startTime = df.parse(p.getFirstPortionDate()).getTime();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		Prescription prescription = prescriptionService.findById(Long.parseLong(p.getPrescriptionId()));
+		for (long i = 0; i < p.getPortionsNumber(); i++) {
+
+
+			Portion portion = new Portion();
+			portion.setPrescription(prescription);
+			portion.setSize(Double.parseDouble(p.getSize()));
+			portion.setTaken(false);
+			portion.setUnit(p.getUnit());
+			portion.setTakeTime(new Timestamp(startTime + (i * 1000 * 60 * 60 * 24)));
+			portionService.persist(portion);
+
+		}
+
+		return "redirect:/doctor/patients/prescriptions/portions?patient_id=" +
+				p.getPatientId() + "&prescription_id=" + p.getPrescriptionId();
 	}
 	
 	private List<PortionsHolder> preparePortionHolders(Collection<Portion> portions) {

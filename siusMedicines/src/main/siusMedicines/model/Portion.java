@@ -102,7 +102,7 @@ public class Portion {
 	public String toString() {
 		return "Portion [id=" + id + ", unit=" + unit + ", size=" + size
 				+ ", takeTime=" + takeTime + ", taken=" + taken
-				+ ", prescription=" + prescription + "]";
+				+ "]";
 	}
 	
 }
