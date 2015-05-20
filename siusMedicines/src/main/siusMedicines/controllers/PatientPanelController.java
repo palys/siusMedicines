@@ -35,12 +35,18 @@ public class PatientPanelController {
 		modelAndView.addObject("patient_name", user.getName());
 		evaluate(user);
 		modelAndView.addObject("scheduled_portions", getNearestPortions(ELEMENTS_TO_DISPLAY));
-		modelAndView.addObject("historical_portions", getHistoricalPortions());
 		modelAndView.addObject("unchecked_portions", getUncheckedPortions(ELEMENTS_TO_DISPLAY));
 		modelAndView.addObject("scheduled_portions_count", scheduledPortionsCount);
-		modelAndView.addObject("historical_portions_count", historicalPortionsCount);
 		modelAndView.addObject("unchecked_portions_count", uncheckedPortionsCount);
 		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/historical", method = RequestMethod.GET)
+	public ModelAndView prepareHistoricalPanel(ModelAndView modelAndView) {
+		modelAndView.addObject("historical_portions", getHistoricalPortions());
+		modelAndView.addObject("historical_portions_count", historicalPortionsCount);
+
 		return modelAndView;
 	}
 	

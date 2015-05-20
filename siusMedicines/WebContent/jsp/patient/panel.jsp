@@ -37,6 +37,21 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 		
+		<p>
+			<a class="btn btn-lg btn-default" href="historical" role="button">
+										<span title="Calendar" class="glyphicon glyphicon-calendar"></span>&nbsp Show Calendar View</a>
+		<a class="btn btn-lg btn-default" href="historical" role="button">
+										<span title="History" class="glyphicon glyphicon-check"></span>&nbsp Show History</a>
+		<a class="btn btn-lg btn-default" href="historical" role="button">
+										<span title="Contact" class="glyphicon glyphicon-envelope"></span>&nbsp Contact Doctor</a>
+		<a class="btn btn-lg btn-default" href="historical" role="button">
+										<span title="Emergency" class="glyphicon glyphicon-earphone"></span>&nbsp Emergency Call</a>
+		<a class="btn btn-lg btn-default" href="historical" role="button">
+										<span title="Patient" class="glyphicon glyphicon-user"></span>&nbsp Show Personal Data</a>
+		<a class="btn btn-lg btn-default" href="historical" role="button">
+										<span title="Logout" class="glyphicon glyphicon-off"></span>&nbsp Logout&nbsp</a>
+		</p>
+		
 		<div class="tab-content">
 			<div id="unchecked_list" class="tab-pane fade in active">
 				<div class="panel panel-default">
@@ -115,7 +130,9 @@
 				</div>
 			</div>
 		</div>
-		
+		<p style="text-align:right">
+			<a class="btn btn-lg btn-default" href="medicines" role="button">Show All</a>
+		</p>
 	</div>
 
 
