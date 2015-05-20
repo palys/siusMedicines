@@ -52,7 +52,7 @@ public class UserService {
 		userDao.closeCurrentSessionWithTransaction();
 	}
 	
-	public UserDao medicineDao() {
+	public UserDao userDao() {
 		return userDao;
 	}
 }
