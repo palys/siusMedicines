@@ -39,18 +39,21 @@
 		
 		<p>
 			<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Calendar" class="glyphicon glyphicon-calendar"></span>&nbsp; Show Calendar View</a>
+										<span title="Calendar" class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp; Show Calendar</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="History" class="glyphicon glyphicon-check"></span>&nbsp; Show History</a>
+										<span title="History" class="glyphicon glyphicon-check"></span>&nbsp;&nbsp; Show History</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Contact" class="glyphicon glyphicon-envelope"></span>&nbsp; Contact Doctor</a>
+										<span title="Contact" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp; Contact Doctor</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Emergency" class="glyphicon glyphicon-earphone"></span>&nbsp; Emergency Call</a>
+										<span title="Emergency" class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp; Emergency Call</a>
 		<a class="btn btn-lg btn-default" href="historical" role="button">
-										<span title="Patient" class="glyphicon glyphicon-user"></span>&nbsp; Show Personal Data</a>
+										<span title="Patient" class="glyphicon glyphicon-user"></span>&nbsp;&nbsp; Personal Data</a>
 		<a class="btn btn-lg btn-default" href="javascript:formSubmit()" role="button">
-										<span title="Logout" class="glyphicon glyphicon-off"></span>&nbsp; Logout&nbsp;</a>
+										<span title="Logout" class="glyphicon glyphicon-off"></span>&nbsp;&nbsp; Logout&nbsp;</a>
+		<a class="btn btn-lg btn-default" href="historical" role="button">
+										&nbsp;<span title="Settings" class="glyphicon glyphicon glyphicon-cog"></span>&nbsp;</a>
 		</p>
+		<br>
 		
 		<div class="tab-content">
 			<div id="unchecked_list" class="tab-pane fade in active">

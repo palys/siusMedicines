@@ -23,42 +23,36 @@ public class PatientPanelController {
 	
 	int ELEMENTS_TO_DISPLAY = 4;
 	UserService userService = new UserService();
-	private List<Portion> historicalPortions = new LinkedList<>();
-	int historicalPortionsCount;
-	private List<Portion> uncheckedPortions = new LinkedList<>();
-	int uncheckedPortionsCount;
-	private List<Portion> scheduledPortions = new LinkedList<>();
-	int scheduledPortionsCount;
 	
 	@RequestMapping(value = "/panel", method = RequestMethod.GET)
 	public ModelAndView preparePanel(ModelAndView modelAndView, Principal user) {
 		modelAndView.addObject("patient_name", user.getName());
-		evaluate(user);
-		modelAndView.addObject("scheduled_portions", getNearestPortions(ELEMENTS_TO_DISPLAY));
-		modelAndView.addObject("unchecked_portions", getUncheckedPortions(ELEMENTS_TO_DISPLAY));
-		modelAndView.addObject("scheduled_portions_count", scheduledPortionsCount);
-		modelAndView.addObject("unchecked_portions_count", uncheckedPortionsCount);
+		List<List<Portion>> portions = evaluate(user);
+		List<Portion> scheduled = getPortions(portions.get(2),ELEMENTS_TO_DISPLAY);
+		List<Portion> unchecked = getPortions(portions.get(1),ELEMENTS_TO_DISPLAY);
+		modelAndView.addObject("scheduled_portions", scheduled);
+		modelAndView.addObject("unchecked_portions", unchecked);
+		modelAndView.addObject("scheduled_portions_count", scheduled.size());
+		modelAndView.addObject("unchecked_portions_count", unchecked.size());
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/historical", method = RequestMethod.GET)
-	public ModelAndView prepareHistoricalPanel(ModelAndView modelAndView) {
-		modelAndView.addObject("historical_portions", getHistoricalPortions());
-		modelAndView.addObject("historical_portions_count", historicalPortionsCount);
+	public ModelAndView prepareHistoricalPanel(ModelAndView modelAndView, Principal user) {
+		List<List<Portion>> portions = evaluate(user);
+		List<Portion> historical = getPortions(portions.get(0),portions.get(0).size());
+		modelAndView.addObject("historical_portions", historical);
+		modelAndView.addObject("historical_portions_count", historical.size());
 
 		return modelAndView;
 	}
 	
-	private void evaluate(Principal user) {
+	private List<List<Portion>> evaluate(Principal user) {
 		
-		historicalPortions = new LinkedList<>();
-		uncheckedPortions = new LinkedList<>();
-		scheduledPortions = new LinkedList<>();
-		
-		List<Portion> portionsToTake = new LinkedList<>();
 		List<Portion> historical = new LinkedList<>();
-		List<Portion> unchecked_p = new LinkedList<>();
+		List<Portion> unchecked = new LinkedList<>();
+		List<Portion> scheduled = new LinkedList<>();
 		
 		Set<Prescription> prescriptions = userService.findById(user.getName()).getPatients().iterator().next().getPrescriptions();
 		for(Prescription p : prescriptions) {
@@ -69,16 +63,16 @@ public class PatientPanelController {
 				} else {
 					Timestamp t = new Timestamp(System.currentTimeMillis());
 					if(portion.getTakeTime().before(t)) {
-						unchecked_p.add(portion);
+						unchecked.add(portion);
 						historical.add(portion);
 					} else {
-						portionsToTake.add(portion);
+						scheduled.add(portion);
 					}
 				}
 			}
 		}
 		
-		Collections.sort(portionsToTake, new Comparator<Portion>() {
+		Collections.sort(scheduled, new Comparator<Portion>() {
 
 			@Override
 			public int compare(Portion o1, Portion o2) {
@@ -86,7 +80,7 @@ public class PatientPanelController {
 			}
 			
 		});
-		Collections.sort(unchecked_p, new Comparator<Portion>() {
+		Collections.sort(unchecked, new Comparator<Portion>() {
 
 			@Override
 			public int compare(Portion o1, Portion o2) {
@@ -103,31 +97,16 @@ public class PatientPanelController {
 			
 		});
 		
-		if(historical.size() != 0) {
-			historicalPortions.addAll(historical);
-		}
-		if(unchecked_p.size() != 0) {
-				uncheckedPortions.addAll(unchecked_p);
-		}
-		if(portionsToTake.size() != 0) {
-			scheduledPortions.addAll(portionsToTake);
-		}
+		LinkedList<List<Portion>> portions = new LinkedList<>();
+		portions.add(historical);
+		portions.add(unchecked);
+		portions.add(scheduled);
 		
-		historicalPortionsCount = historicalPortions.size();
-		uncheckedPortionsCount = uncheckedPortions.size();
-		scheduledPortionsCount = scheduledPortions.size();
+		return portions;
 	}
 	
-	private List<Portion> getNearestPortions(int number) {
-		return scheduledPortions.subList(0, (scheduledPortions.size() > number)? number : scheduledPortions.size());
-	}
-	
-	private List<Portion> getHistoricalPortions() {
-		return historicalPortions;
-	}
-	
-	private List<Portion> getUncheckedPortions(int number) {
-		return uncheckedPortions.subList(0, (uncheckedPortions.size() > number)? number : uncheckedPortions.size());
+	private List<Portion> getPortions(List<Portion> list, int number) {
+		return list.subList(0, (list.size() > number)? number : list.size());
 	}
 
 }
