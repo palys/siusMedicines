@@ -69,6 +69,15 @@ public class PrescriptionsController {
 		return "redirect:/doctor/patients/prescriptions?patient_id=" + patientId;
 	}
 	
+	@RequestMapping(value = "/portions", method = RequestMethod.GET)
+	public ModelAndView preparePortionsPage(@RequestParam(value = "patient_id") String patientId,
+			@RequestParam(value = "prescription_id") String prescriptionId,
+			Principal user, ModelAndView modelAndView) {
+		Prescription prescription = prescriptionService.findById(Long.parseLong(prescriptionId));
+		modelAndView.addObject("prescription", prescription);
+		return modelAndView;
+	}
+	
 	private List<PrescriptionHolder> preparePrescriptions(Collection<Prescription> prescriptions) {
 		List<PrescriptionHolder> holders = new LinkedList<PrescriptionHolder>();
 		

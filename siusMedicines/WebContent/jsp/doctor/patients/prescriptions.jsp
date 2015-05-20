@@ -94,11 +94,11 @@
 								<td><c:out value="${prescriptions_list.portionsLeft}"/></td>
 								<td><c:out value="${prescriptions_list.totalPortionsNumber}" /></td>
 								<td><a class="btn btn-default"
-									href="${pageContext.request.contextPath}/doctor/patients/add?patient_id=${patients_list.id}">
+									href="${pageContext.request.contextPath}/doctor/patients/prescriptions/portions?patient_id=${patient_id}&prescription_id=${prescriptions_list.prescription.id}">
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a></td>
 								<td><a class="btn btn-default"
-									href="${pageContext.request.contextPath}/doctor/patients/remove?patient_id=${patients_list.id}">
+									href="${pageContext.request.contextPath}/doctor/patients/prescriptions/remove?patient_id=${patient_id}">
 										<span class="glyphicon glyphicon-remove"></span>
 								</a></td>
 							</tr>
