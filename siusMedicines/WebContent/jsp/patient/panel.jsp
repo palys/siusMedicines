@@ -69,11 +69,11 @@
 				<span title="History" class="glyphicon glyphicon-check"></span>&nbsp;&nbsp;
 				Show History
 			</a> <a class="btn btn-lg btn-default" href="historical" role="button">
+				<span title="Emergency" class="glyphicon glyphicon-th-list"></span>&nbsp;&nbsp;
+				Show Medicines
+			</a> <a class="btn btn-lg btn-default" href="historical" role="button">
 				<span title="Contact" class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;
 				Contact Doctor
-			</a> <a class="btn btn-lg btn-default" href="historical" role="button">
-				<span title="Emergency" class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;
-				Emergency Call
 			</a> <a class="btn btn-lg btn-default" href="historical" role="button">
 				<span title="Patient" class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
 				Personal Data
@@ -82,7 +82,7 @@
 				class="glyphicon glyphicon-off"></span>&nbsp;&nbsp; Logout&nbsp;
 			</a> <a class="btn btn-lg btn-default" href="historical" role="button">
 				&nbsp;<span title="Settings"
-				class="glyphicon glyphicon glyphicon-cog"></span>&nbsp;
+				class="glyphicon glyphicon glyphicon-cog"></span>
 			</a>
 		</p>
 		<br>
