@@ -15,6 +15,8 @@ ALTER TABLE users
 CREATE TABLE medicines
 (
   name character varying(45) NOT NULL,
+  description character varying(500),
+  meal_info character varying(45) NOT NULL,
   CONSTRAINT medicines_pkey PRIMARY KEY (name)
 )
 WITH (
@@ -29,6 +31,9 @@ CREATE TABLE patients
   name character varying(45) NOT NULL,
   surname character varying(45) NOT NULL,
   username character varying(45) NOT NULL references users (username),
+  pesel character varying(11) NOT NULL,
+  phone_number character varying(13) NOT NULL,
+  birthdate date NOT NULL,
   CONSTRAINT patients_pkey PRIMARY KEY (id)
 )
 WITH (
@@ -43,6 +48,9 @@ CREATE TABLE doctors
   name character varying(45) NOT NULL,
   surname character varying(45) NOT NULL,
   username character varying(45) NOT NULL references users (username),
+  phone_number character varying(13) NOT NULL,
+  email character varying(45) NOT NULL,
+  spetialization character varying(45) NOT NULL,
   CONSTRAINT doctors_pkey PRIMARY KEY (id)
 )
 WITH (
@@ -72,6 +80,8 @@ CREATE TABLE portions
   size real,
   take_time timestamp,
   taken boolean,
+  declined boolean,
+  decline_reason character varying(100),
   prescription_id integer references prescriptions (id),
   CONSTRAINT portions_pkey PRIMARY KEY (id)
 )
