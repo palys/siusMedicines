@@ -18,13 +18,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('[data-toggle="popover"]').popover({target: "hover"}).on('mouseleave',function() {
+			$('[data-toggle="popover"]').popover({
+				target : "hover"
+			}).on('mouseleave', function() {
 				$('[data-toggle="popover"]').popover('hide');
-			}).on('mouseenter',function() {
+			}).on('mouseenter', function() {
 				$(this).popover('show');
 			});
-		     $('#confirmTaking').css("top", "30%");
-		     $('#disclaimTaking').css("top", "30%");
+			$('#confirmTaking').css("top", "30%");
+			$('#disclaimTaking').css("top", "30%");
+			$('#testId').on('click',function() {
+				var portionId = $(this).data('id');
+				$("#inputReject").val(portionId);
+			});
+			$('#tesId').on('click',function() {
+				var portionId = $(this).data('id');
+				$("#inputConfirm").val(portionId);
+			});
 		});
 	</script>
 
@@ -100,6 +110,7 @@
 								<th>Medicine name</th>
 								<th>Quantity</th>
 								<th></th>
+								<th></th>
 							</tr>
 							<c:forEach items="${unchecked_portions}" var="portion_item"
 								varStatus="loop">
@@ -115,11 +126,11 @@
 										class="glyphicon glyphicon-info-sign"></span></a></td>
 									<td><c:out value="${portion_item.size}" /> <c:out
 											value="${portion_item.unit}" /></td>
-									<td><a href="#" class="btn btn-sm btn-success"
-										data-toggle="modal" data-target="#confirmTaking"><span
+									<td><a href="#" id="tesId" class="btn btn-sm btn-success"
+										data-toggle="modal" data-id="${portion_item.id}" data-target="#confirmTaking"><span
 											title="Confirm" class="glyphicon glyphicon-ok"></span></a></td>
-									<td><a href="#" class="btn btn-sm btn-danger"
-										data-toggle="modal" data-target="#disclaimTaking"><span
+									<td><a href="#" id="testId" class="btn btn-sm btn-danger"
+										data-toggle="modal" data-id="${portion_item.id}" data-target="#disclaimTaking"><span
 											title="Reject" class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 							</c:forEach>
@@ -150,8 +161,7 @@
 								<th>Quantity</th>
 								<th></th>
 							</tr>
-							<c:forEach items="${scheduled_portions}" var="portion_item"
-								varStatus="loop">
+							<c:forEach items="${scheduled_portions}" var="portion_item" varStatus="loop">
 								<tr>
 									<td><span title="Taking Time"
 										class="glyphicon glyphicon-time"></span>&nbsp; &nbsp;<c:out
@@ -188,18 +198,26 @@
 						<h4 class="modal-title" id="myModalLabel" align="center">Medicine</h4>
 					</div>
 					<div class="modal-body">
-						<h4 align="center">Are you sure you want to confirm taking medicine?</h3>
-						</div>
+						<h4 align="center">Are you sure you want to confirm taking
+							medicine?</h4>
+						<form:form id="cForm" modelAttribute="rejection_reason"
+							role="form" method="post" action="/siusMedicines/patient/panel">
+							<div class="form-group">
+								<form:input id="inputConfirm" path="id" type="hidden"
+									name="portion"></form:input>
+							</div>
+						</form:form>
+					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Confirm</button>
+						<button type="button" onclick="document.forms['cForm'].submit();" class="btn btn-primary" data-dismiss="modal">Confirm</button>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="disclaimTaking" tabindex="-1" role="dialog"
-			aria-labelledby="largeModal" aria-hidden="true">
+		
+		<div class="modal fade" id="disclaimTaking" tabindex="-1"
+			role="dialog" aria-labelledby="largeModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -208,21 +226,34 @@
 						<h4 class="modal-title" id="myModalLabel" align="center">Medicine</h4>
 					</div>
 					<div class="modal-body">
-						<h4 align="center">Please, provide reason why medicine was not taken.</h3>
-						<div class="required" >
-                			<input class="form-control" type="text" />
-            			</div>
-					</div>
+						<h4 align="center">
+							Please, provide reason why medicine was not taken.
+							</h4>
+							<div class="required">
+								<form:form id="rForm" modelAttribute="rejection_reason" role="form" method="post"
+									action="/siusMedicines/patient/panel">
+									<div class="form-group">
+										<form:input path="value" type="text" class="form-control"
+											id="name" placeholder="Enter reason"></form:input>
+										<form:input id="inputReject" path="id" type="hidden" name="portion"></form:input>
+									</div>
+								</form:form>
+							</div></div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
+						<button type="submit" onclick="document.forms['rForm'].submit();" class="btn btn-primary" data-dismiss="modal">Save changes</button>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+
+		<script>
+
+		</script>
 
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
 </body>
 </html>

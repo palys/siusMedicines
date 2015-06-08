@@ -9,20 +9,45 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import siusMedicines.model.Portion;
 import siusMedicines.model.Prescription;
+import siusMedicines.service.PortionService;
 import siusMedicines.service.UserService;
 
 @Controller
 @RequestMapping("patient")
 public class PatientPanelController {
 	
+	private static class DataHolder {
+		private String value;
+		private Long id;
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getValue() {
+			return value;
+		}
+
+		public void setValue(String value) {
+			this.value = value;
+		}
+	}
+	
 	int ELEMENTS_TO_DISPLAY = 4;
 	UserService userService = new UserService();
+	PortionService portionService = new PortionService();
 	
 	@RequestMapping(value = "/panel", method = RequestMethod.GET)
 	public ModelAndView preparePanel(ModelAndView modelAndView, Principal user) {
@@ -34,8 +59,24 @@ public class PatientPanelController {
 		modelAndView.addObject("unchecked_portions", unchecked);
 		modelAndView.addObject("scheduled_portions_count", scheduled.size());
 		modelAndView.addObject("unchecked_portions_count", unchecked.size());
+		modelAndView.addObject("medicine_taken");
+		modelAndView.addObject("rejection_reason", new DataHolder());
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/panel", method = RequestMethod.POST)
+	public ModelAndView handleRejectionReason(Principal user, @ModelAttribute("rejection_reason") DataHolder s, BindingResult bindingResult){
+		System.out.println("rejection reason: " + s.getValue());
+		System.out.println("portion id " + s.getId());
+		Portion portion = portionService.findById(s.getId());
+		System.out.println(portion);
+		if(s.getValue() == null) {
+			portion.setTaken(true);
+			portionService.update(portion);
+		}
+		ModelAndView model = new ModelAndView("/patient/panel");
+		return preparePanel(model, user);
 	}
 	
 	@RequestMapping(value = "/historical", method = RequestMethod.GET)
@@ -94,7 +135,7 @@ public class PatientPanelController {
 
 			@Override
 			public int compare(Portion o1, Portion o2) {
-				return o1.getTakeTime().compareTo(o2.getTakeTime());
+				return o2.getTakeTime().compareTo(o1.getTakeTime());
 			}
 			
 		});
