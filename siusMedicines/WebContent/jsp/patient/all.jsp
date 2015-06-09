@@ -68,7 +68,7 @@
 									<td><span title="Taking Time" class="glyphicon glyphicon-time"></span>&nbsp; &nbsp;<c:out value="${portion_item.takeTime}" /></td>
 									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp; &nbsp; <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
 									<td><c:out value="${portion_item.size}" /> <c:out value="${portion_item.unit}" /></td>
-									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp; 2h After Meal</td>
+									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp;<c:out value="${portion_item.prescription.medicine.mealInfo}" /></td>
 									<c:if test="${portion_item.taken == true}">
 										<td>&nbsp; &nbsp;<span title="Taken" class="glyphicon glyphicon-ok"></span></td>
 									</c:if>

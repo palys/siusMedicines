@@ -15,6 +15,18 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('[data-toggle="popover"]').popover({
+				target : "hover"
+			}).on('mouseleave', function() {
+				$('[data-toggle="popover"]').popover('hide');
+			}).on('mouseenter', function() {
+				$(this).popover('show');
+			});
+		});
+	</script>
 
 	<div class="bs-docs-grid">
 		<div class="row show-grid">
@@ -66,9 +78,11 @@
 								varStatus="loop">
 								<tr>
 									<td><span title="Taking Time" class="glyphicon glyphicon-time"></span>&nbsp; &nbsp;<c:out value="${portion_item.takeTime}" /></td>
-									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp; &nbsp; <span title="${portion_item.prescription.medicine.name}" class="glyphicon glyphicon-info-sign"></span></td>
+									<td><c:out value="${portion_item.prescription.medicine.name}" /> &nbsp; &nbsp; <a href="" data-toggle="popover" title="${portion_item.prescription.medicine.name}" data-content="${portion_item.prescription.medicine.description}"><span
+										title="Show Info About Medicine"
+										class="glyphicon glyphicon-info-sign"></span></a></td>
 									<td><c:out value="${portion_item.size}" /> <c:out value="${portion_item.unit}" /></td>
-									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp; 2h After Meal</td>
+									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp;<c:out value="${portion_item.prescription.medicine.mealInfo}" /></td>
 									<c:if test="${portion_item.taken == true}">
 										<td>&nbsp; &nbsp;<span title="Taken" class="glyphicon glyphicon-ok"></span></td>
 									</c:if>
@@ -84,7 +98,8 @@
 		</div>
 		
 	</div>
-
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>

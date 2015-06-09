@@ -121,7 +121,7 @@
 									<td><c:out value="${portion_item.takeTime}" /></td>
 									<td><c:out
 											value="${portion_item.prescription.medicine.name}" /> &nbsp;
-										&nbsp; <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover"><span
+										&nbsp; <a href="" data-toggle="popover" title="${portion_item.prescription.medicine.name}" data-content="${portion_item.prescription.medicine.description}"><span
 										title="Show Info About Medicine"
 										class="glyphicon glyphicon-info-sign"></span></a></td>
 									<td><c:out value="${portion_item.size}" /> <c:out
@@ -168,14 +168,13 @@
 											value="${portion_item.takeTime}" /></td>
 									<td><c:out
 											value="${portion_item.prescription.medicine.name}" /> &nbsp;
-										&nbsp; <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover"><span
+										&nbsp; <a href="" data-toggle="popover" title="${portion_item.prescription.medicine.name}" data-content="${portion_item.prescription.medicine.description}"><span
 										title="Show Info About Medicine"
 										class="glyphicon glyphicon-info-sign"></span></a></td>
 									<td><c:out value="${portion_item.size}" /> <c:out
 											value="${portion_item.unit}" /></td>
 									<td><span title="Meal Requirement"
-										class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp; 2h
-										After Meal</td>
+										class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp;<c:out value="${portion_item.prescription.medicine.mealInfo}" /></td>
 								</tr>
 							</c:forEach>
 						</table>
