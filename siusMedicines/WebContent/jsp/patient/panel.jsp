@@ -79,10 +79,10 @@
 				Personal Data
 			</a> <a class="btn btn-lg btn-default" href="javascript:formSubmit()"
 				role="button"> <span title="Logout"
-				class="glyphicon glyphicon-off"></span>&nbsp;&nbsp; Logout&nbsp;
+				class="glyphicon glyphicon-off"></span>&nbsp;&nbsp; Logout
 			</a> <a class="btn btn-lg btn-default" href="historical" role="button">
 				&nbsp;<span title="Settings"
-				class="glyphicon glyphicon glyphicon-cog"></span>
+				class="glyphicon glyphicon glyphicon-cog"></span>&nbsp;
 			</a>
 		</p>
 		<br>

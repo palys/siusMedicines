@@ -1,5 +1,6 @@
 package siusMedicines.model;
 
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,6 +29,15 @@ public class Patient {
 	@Column(name = "surname")
 	private String surname;
 	
+	@Column(name = "pesel")
+	private String pesel;
+	
+	@Column(name = "phone_number")
+	private String phoneNumber;
+	
+	@Column(name = "birthdate")
+	private Date birthdate;
+	
 	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinColumn(name = "username")
 	private User user;
@@ -39,12 +49,16 @@ public class Patient {
 		
 	}
 
-	public Patient(Long id, String name, String surname, User user,
+	public Patient(Long id, String name, String surname, String pesel,
+			String phoneNumber, Date birthdate, User user,
 			Set<Prescription> prescriptions) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
+		this.pesel = pesel;
+		this.phoneNumber = phoneNumber;
+		this.birthdate = birthdate;
 		this.user = user;
 		this.prescriptions = prescriptions;
 	}
@@ -89,10 +103,35 @@ public class Patient {
 		this.prescriptions = prescriptions;
 	}
 
+	public String getPesel() {
+		return pesel;
+	}
+
+	public void setPesel(String pesel) {
+		this.pesel = pesel;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
 	@Override
 	public String toString() {
 		return "Patient [id=" + id + ", name=" + name + ", surname=" + surname
-				+ ", prescriptions=" + prescriptions + "]";
+				+ ", pesel=" + pesel + ", phoneNumber=" + phoneNumber
+				+ ", birthdate=" + birthdate + "]";
 	}
 	
 }

@@ -31,6 +31,12 @@ public class Portion {
 	@Column(name = "taken")
 	private boolean taken;
 	
+	@Column(name = "declined")
+	private boolean declined;
+	
+	@Column(name = "decline_reason")
+	private String declineReason;
+	
 	@ManyToOne
 	@JoinColumn(name = "prescription_id")
 	private Prescription prescription;
@@ -40,13 +46,16 @@ public class Portion {
 	}
 
 	public Portion(Long id, String unit, double size, Timestamp takeTime,
-			boolean taken, Prescription prescription) {
+			boolean taken, boolean declined, String declineReason,
+			Prescription prescription) {
 		super();
 		this.id = id;
 		this.unit = unit;
 		this.size = size;
 		this.takeTime = takeTime;
 		this.taken = taken;
+		this.declined = declined;
+		this.declineReason = declineReason;
 		this.prescription = prescription;
 	}
 
@@ -98,11 +107,27 @@ public class Portion {
 		this.prescription = prescription;
 	}
 
+	public boolean isDeclined() {
+		return declined;
+	}
+
+	public void setDeclined(boolean declined) {
+		this.declined = declined;
+	}
+
+	public String getDeclineReason() {
+		return declineReason;
+	}
+
+	public void setDeclineReason(String declineReason) {
+		this.declineReason = declineReason;
+	}
+
 	@Override
 	public String toString() {
 		return "Portion [id=" + id + ", unit=" + unit + ", size=" + size
-				+ ", takeTime=" + takeTime + ", taken=" + taken
-				+ "]";
+				+ ", takeTime=" + takeTime + ", taken=" + taken + ", declined="
+				+ declined + ", declineReason=" + declineReason + "]";
 	}
 	
 }

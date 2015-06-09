@@ -17,6 +17,12 @@ public class Medicine {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "description")
+	private String description;
+	
+	@Column(name = "meal_info")
+	private String mealInfo;
+	
 	@OneToMany(mappedBy = "medicine")
 	private Set<Prescription> prescriptions;
 	
@@ -24,9 +30,12 @@ public class Medicine {
 		
 	}
 
-	public Medicine(String name, Set<Prescription> prescriptions) {
+	public Medicine(String name, String description, String mealInfo,
+			Set<Prescription> prescriptions) {
 		super();
 		this.name = name;
+		this.description = description;
+		this.mealInfo = mealInfo;
 		this.prescriptions = prescriptions;
 	}
 
@@ -46,11 +55,26 @@ public class Medicine {
 		this.prescriptions = prescriptions;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getMealInfo() {
+		return mealInfo;
+	}
+
+	public void setMealInfo(String mealInfo) {
+		this.mealInfo = mealInfo;
+	}
+
 	@Override
 	public String toString() {
-		return "Medicine [ name=" + name + "]";
+		return "Medicine [name=" + name + ", description=" + description
+				+ ", mealInfo=" + mealInfo + "]";
 	}
-	
-	
 
 }
