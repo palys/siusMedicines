@@ -36,6 +36,7 @@
 				$("#inputConfirm").val(portionId);
 			});
 		});
+		
 	</script>
 
 	<div class="bs-docs-grid">

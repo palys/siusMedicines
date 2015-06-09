@@ -25,6 +25,8 @@
 			}).on('mouseenter', function() {
 				$(this).popover('show');
 			});
+			$('#icon-success').css("color","#5CB85C");
+			$('#icon-fail').css("color","#ff2f2f");
 		});
 	</script>
 
@@ -84,15 +86,13 @@
 									<td><c:out value="${portion_item.size}" /> <c:out value="${portion_item.unit}" /></td>
 									<td><span title="Meal Requirement" class="glyphicon glyphicon-cutlery"></span>&nbsp; &nbsp;<c:out value="${portion_item.prescription.medicine.mealInfo}" /></td>
 									<c:if test="${portion_item.taken == true}">
-										<td>&nbsp; &nbsp;<span title="Taken" class="glyphicon glyphicon-ok"></span></td>
+										<td>&nbsp; &nbsp;<span id="icon-success" title="Taken" class="glyphicon glyphicon-ok"></span></td>
 									</c:if>
 									<c:if test="${portion_item.declined == true}">
-									<td><a href="" data-toggle="popover" title="Declined" data-content="${portion_item.declineReason}"><span
-										title="Declined"
+									<td>&nbsp; &nbsp;<a id="icon-fail" data-toggle="popover" title="Declined" data-content="${portion_item.declineReason}"><span
 										class="glyphicon glyphicon-remove"></span></a></td>
-										<!--  <td>&nbsp; &nbsp;<span title="Declined" class="glyphicon glyphicon-remove"></span></td>-->
 									</c:if>
-									<c:if test="${portion_item.taken == false}">
+									<c:if test="${portion_item.declined == false && portion_item.taken == false}">
 										<td>&nbsp; &nbsp;<span title="Unknown" class="glyphicon glyphicon-exclamation-sign"></span></td>
 									</c:if>
 								</tr>

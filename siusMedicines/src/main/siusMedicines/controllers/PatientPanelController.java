@@ -74,6 +74,10 @@ public class PatientPanelController {
 		if(s.getValue() == null) {
 			portion.setTaken(true);
 			portionService.update(portion);
+		} else {
+			portion.setDeclined(true);
+			portion.setDeclineReason(s.getValue());
+			portionService.update(portion);
 		}
 		ModelAndView model = new ModelAndView("/patient/panel");
 		return preparePanel(model, user);
@@ -114,8 +118,12 @@ public class PatientPanelController {
 				} else {
 					Timestamp t = new Timestamp(System.currentTimeMillis());
 					if(portion.getTakeTime().before(t)) {
-						unchecked.add(portion);
-						historical.add(portion);
+						if(portion.isDeclined()){
+							historical.add(portion);
+						} else {
+							historical.add(portion);
+							unchecked.add(portion);
+						}
 					} else {
 						scheduled.add(portion);
 					}
