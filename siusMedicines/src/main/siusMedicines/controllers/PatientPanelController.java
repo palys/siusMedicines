@@ -103,6 +103,36 @@ public class PatientPanelController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/personal", method = RequestMethod.GET)
+	public ModelAndView preparePersonalDataPanel(ModelAndView modelAndView, Principal user) {
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
+	public ModelAndView prepareCalendarPanel(ModelAndView modelAndView, Principal user) {
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/medicines", method = RequestMethod.GET)
+	public ModelAndView prepareMedicinesPanel(ModelAndView modelAndView, Principal user) {
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public ModelAndView prepareContactPanel(ModelAndView modelAndView, Principal user) {
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/settings", method = RequestMethod.GET)
+	public ModelAndView prepareSettingsPanel(ModelAndView modelAndView, Principal user) {
+
+		return modelAndView;
+	}
+	
 	private List<List<Portion>> evaluate(Principal user) {
 		
 		List<Portion> historical = new LinkedList<>();
