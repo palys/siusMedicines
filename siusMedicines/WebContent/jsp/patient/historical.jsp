@@ -86,8 +86,14 @@
 									<c:if test="${portion_item.taken == true}">
 										<td>&nbsp; &nbsp;<span title="Taken" class="glyphicon glyphicon-ok"></span></td>
 									</c:if>
+									<c:if test="${portion_item.declined == true}">
+									<td><a href="" data-toggle="popover" title="Declined" data-content="${portion_item.declineReason}"><span
+										title="Declined"
+										class="glyphicon glyphicon-remove"></span></a></td>
+										<!--  <td>&nbsp; &nbsp;<span title="Declined" class="glyphicon glyphicon-remove"></span></td>-->
+									</c:if>
 									<c:if test="${portion_item.taken == false}">
-										<td>&nbsp; &nbsp;<span title="Taken" class="glyphicon glyphicon-remove"></span></td>
+										<td>&nbsp; &nbsp;<span title="Unknown" class="glyphicon glyphicon-exclamation-sign"></span></td>
 									</c:if>
 								</tr>
 							</c:forEach>
