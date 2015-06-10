@@ -105,7 +105,7 @@ public class PrescriptionsController {
 		long startTime = 0;
 		
 		try {
-			startTime = df.parse(p.getFirstPortionDate()).getTime();
+			startTime = df.parse(p.getFirstPortionDate().replace('T', ' ')).getTime();
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -119,6 +119,8 @@ public class PrescriptionsController {
 			portion.setPrescription(prescription);
 			portion.setSize(Double.parseDouble(p.getSize()));
 			portion.setTaken(false);
+			portion.setDeclined(false);
+			portion.setDeclineReason("");
 			portion.setUnit(p.getUnit());
 			portion.setTakeTime(new Timestamp(startTime + (i * 1000 * 60 * 60 * 24)));
 			portionService.persist(portion);

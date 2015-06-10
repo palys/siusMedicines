@@ -55,6 +55,21 @@
 						placeholder="Enter surname" value="${patient.surname}"></form:input>
 				</div>
 				<div class="form-group">
+					<label for="pesel">Pesel:</label>
+					<form:input path="pesel" type="text" class="form-control" id="pesel"
+						placeholder="Enter pesel" value="${patient.pesel}"></form:input>
+				</div>
+				<div class="form-group">
+					<label for="phoneNumber">Phone number:</label>
+					<form:input path="phoneNumber" type="text" class="form-control" id="phoneNumber"
+						placeholder="Enter phone number" value="${patient.phoneNumber}"></form:input>
+				</div>
+				<div class="form-group">
+					<label for="phoneNumber">Birth date:</label>
+					<form:input path="birthdate" type="date" class="form-control" id="birthdate"
+						placeholder="Enter birth date in format yyyy-mm-dd" value="${patient.birthdate}"></form:input>
+				</div>
+				<div class="form-group">
 					<label for="username">Login:</label>
 					<form:input path="user.username" type="text" class="form-control" id="username"
 						placeholder="Enter login" value="${patient.user.username}"></form:input>
