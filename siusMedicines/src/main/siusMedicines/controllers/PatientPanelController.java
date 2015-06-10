@@ -1,11 +1,15 @@
 package siusMedicines.controllers;
 
 import java.security.Principal;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Controller;
@@ -112,9 +116,14 @@ public class PatientPanelController {
 		return modelAndView;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
 	public ModelAndView prepareCalendarPanel(ModelAndView modelAndView, Principal user) {
-
+		List<Map<String,?>> list = prepareCalendarData(user);
+		Map<String,Integer> dailyCounts = (Map<String,Integer>)list.get(0);
+		Map<String,List<Portion>> dailyPortions = (Map<String,List<Portion>>)list.get(1);
+		modelAndView.addObject("dailyCounts", dailyCounts);
+		modelAndView.addObject("dailyPortions", dailyPortions);
 		return modelAndView;
 	}
 	
@@ -201,6 +210,48 @@ public class PatientPanelController {
 		portions.add(scheduled);
 		
 		return portions;
+	}
+	
+	private List<Map<String,?>> prepareCalendarData(Principal user){
+		List<Map<String,?>> toReturn = new LinkedList<>();
+		
+		Map<String,Integer> dailyCounts = new HashMap<>();
+		Map<String,List<Portion>> dailyPortions= new HashMap<>();
+		
+		Set<Prescription> prescriptions = userService.findById(user.getName()).getPatients().iterator().next().getPrescriptions();
+		for(Prescription p : prescriptions) {
+			Set<Portion> portions = p.getPortions();
+			for(Portion portion : portions) {
+				Timestamp t = portion.getTakeTime();
+				Calendar c = Calendar.getInstance();
+				c.setTimeInMillis(t.getTime());
+				String year = Integer.toString(c.get(Calendar.YEAR));
+				String month = Integer.toString(c.get(Calendar.MONTH) + 1);
+				String day = Integer.toString(c.get(Calendar.DAY_OF_MONTH));
+				String date = year + "-" + month + "-" + day;
+				
+				if(dailyCounts.containsKey(date)){
+					dailyCounts.put(date, dailyCounts.get(date) + 1);
+				} else {
+					dailyCounts.put(date,  1);
+				}
+				
+				if(dailyPortions.containsKey(date)){
+					List<Portion> l = dailyPortions.get(date);
+					l.add(portion);
+					dailyPortions.put(date, l);
+				} else {
+					List<Portion> l = new LinkedList<>();
+					l.add(portion);
+					dailyPortions.put(date, l);
+				}
+			}
+		}
+		
+		toReturn.add(dailyCounts);
+		toReturn.add(dailyPortions);
+		
+		return toReturn;
 	}
 	
 	private List<Portion> getPortions(List<Portion> list, int number) {

@@ -20,13 +20,18 @@
 	</script>
 	<script>
 	$(document).ready(function () {
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = date.getMonth() + 1;
+		var time = year + "-" + month;
         $(".responsive-calendar").responsiveCalendar({
-          time: '2013-05',
+          time: time,
+          allRows : false,
           events: {
-            "2013-04-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
-            "2013-04-26": {"number": 1, "url": "http://w3widgets.com"}, 
-            "2013-05-03":{"number": 1}, 
-            "2013-06-12": {}}
+            "2015-04-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
+            "2015-04-26": {"number": 1, "url": "http://w3widgets.com"}, 
+            "2015-06-03":{"number": 1}, 
+            "2015-06-12": {}}
         });
       });
     </script>
@@ -61,9 +66,9 @@
       <!-- Responsive calendar - START -->
     	<div class="responsive-calendar">
         <div class="controls">
-            <a class="pull-left" data-go="prev"><div class="btn btn-primary">Prev</div></a>
+            <a class="pull-left" data-go="prev"><div class="btn btn-primary">Previous Month</div></a>
             <h4><span data-head-year></span> <span data-head-month></span></h4>
-            <a class="pull-right" data-go="next"><div class="btn btn-primary">Next</div></a>
+            <a class="pull-right" data-go="next"><div class="btn btn-primary">Next Month</div></a>
         </div><hr/>
         <div class="day-headers">
           <div class="day header">Mon</div>
