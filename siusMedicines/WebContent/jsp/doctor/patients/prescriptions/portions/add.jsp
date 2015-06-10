@@ -69,8 +69,7 @@
 				</div>
 				<div class="form-group">
 					<label for="firstPortionDate">FirstPortionDate:</label>
-					<form:input path="firstPortionDate" type="text" class="form-control" id="firstPortionDate"
-						placeholder="rrrr-mm-dd hh:mm"></form:input>
+					<form:input path="firstPortionDate" type="datetime-local" class="form-control" id="firstPortionDate"></form:input>
 				</div>
 				<div class="form-group">
 					<form:input path="patientId" type="hidden" class="form-control" id="patientId"
