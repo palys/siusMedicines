@@ -27,11 +27,11 @@
 			});
 			$('#confirmTaking').css("top", "30%");
 			$('#disclaimTaking').css("top", "30%");
-			$('#testId').on('click',function() {
+			$("[id^='testId']").on('click',function() {
 				var portionId = $(this).data('id');
 				$("#inputReject").val(portionId);
 			});
-			$('#tesId').on('click',function() {
+			$("[id^='tesId']").on('click',function() {
 				var portionId = $(this).data('id');
 				$("#inputConfirm").val(portionId);
 			});
@@ -127,10 +127,10 @@
 										class="glyphicon glyphicon-info-sign"></span></a></td>
 									<td><c:out value="${portion_item.size}" /> <c:out
 											value="${portion_item.unit}" /></td>
-									<td><a href="#" id="tesId" class="btn btn-sm btn-success"
+									<td><a href="#" id="tesId${portion_item.id}" class="btn btn-sm btn-success"
 										data-toggle="modal" data-id="${portion_item.id}" data-target="#confirmTaking"><span
 											title="Confirm" class="glyphicon glyphicon-ok"></span></a></td>
-									<td><a href="#" id="testId" class="btn btn-sm btn-danger"
+									<td><a href="#" id="testId${portion_item.id}" class="btn btn-sm btn-danger"
 										data-toggle="modal" data-id="${portion_item.id}" data-target="#disclaimTaking"><span
 											title="Reject" class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
