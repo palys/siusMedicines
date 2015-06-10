@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import siusMedicines.model.Medicine;
 import siusMedicines.model.Portion;
 import siusMedicines.model.Prescription;
 import siusMedicines.service.PortionService;
@@ -117,7 +118,13 @@ public class PatientPanelController {
 	
 	@RequestMapping(value = "/medicines", method = RequestMethod.GET)
 	public ModelAndView prepareMedicinesPanel(ModelAndView modelAndView, Principal user) {
-
+		Set<Prescription> prescriptions = userService.findById(user.getName()).getPatients().iterator().next().getPrescriptions();
+		List<Medicine> medicines = new LinkedList<>();
+		for(Prescription p : prescriptions) {
+			medicines.add(p.getMedicine());
+		}
+		modelAndView.addObject("medicines", medicines);
+		modelAndView.addObject("medicines_count", medicines.size());
 		return modelAndView;
 	}
 	

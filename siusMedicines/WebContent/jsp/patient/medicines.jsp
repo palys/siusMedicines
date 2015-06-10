@@ -42,7 +42,39 @@
 			<a class="btn btn-lg btn-default" href="panel" role="button">Back</a>
 		</p>
 		
-		
+		<div class="tab-content">
+			<div id="medicines" class="tab-pane fade in active">
+				<div class="panel panel-default">
+					<div class="panel-heading">Medicines</div>
+					<c:if test="${medicines_count == 0}">
+						<p> <br>&nbsp; &nbsp; No medicines</p>
+					</c:if>
+					<c:if test="${medicines_count != 0}">
+						<table class="table table-hover">
+							<col width="5%">
+							<col width="20%">
+							<col width="60%">
+							<col width="15%">
+							<tr>
+								<th></th>
+								<th>Medicine name</th>
+								<th>Description</th>
+								<th>Meal Requirement</th>
+							</tr>
+							<c:forEach items="${medicines}" var="medicine_item"
+								varStatus="loop">
+								<tr>
+									<td></td>
+									<td></span>&nbsp; &nbsp;<c:out value="${medicine_item.name}" /></td>
+									<td></span>&nbsp; &nbsp;<c:out value="${medicine_item.description}" /></td>
+									<td></span>&nbsp; &nbsp;<c:out value="${medicine_item.mealInfo}" /></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:if>
+				</div>
+			</div>
+		</div>
 		
 	</div>
 		<script src="https://code.jquery.com/jquery.js"></script>
