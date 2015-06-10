@@ -49,6 +49,16 @@
 					<form:input path="name" type="text" class="form-control" id="name"
 						placeholder="Enter name"></form:input>
 				</div>
+				<div class="form-group">
+					<label for="description">Description:</label>
+					<form:input path="description" type="text" class="form-control" id="description"
+						placeholder="Enter description"></form:input>
+				</div>
+				<div class="form-group">
+					<label for="mealInfo">Meal Requirement:</label>
+					<form:input path="mealInfo" type="text" class="form-control" id="mealInfo"
+						placeholder="Enter meal requirements"></form:input>
+				</div>
 				<div class="form-actions">
 					<button type="submit" class="btn btn-lg btn-default">Add</button>
 					<a class="btn btn-lg btn-default"
