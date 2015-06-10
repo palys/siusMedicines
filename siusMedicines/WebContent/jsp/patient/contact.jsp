@@ -47,7 +47,7 @@
 	</div>
 	
 	<div class="container">
-			<form:form modelAttribute="mail" role="form" method="post"
+			<form:form modelAttribute="mail" role="form" method="post" id="sendmail"
 				action="/siusMedicines/patient/contact">
 				<div class="form-group">
 					<label for="name">Doctor:</label>
@@ -64,8 +64,8 @@
 				</div>
 				<div class="form-group">
 					<label for="message">Message:</label>
-					<form:input path="message" type="text" class="form-control" id="message"
-						placeholder="Enter message here" style="height:300px;"></form:input>
+					<form:textarea path="message" form="sendmail" class="form-control" placeholder="Enter message here" 
+						rows="16"></form:textarea>
 				</div>
 				<div class="form-actions">
 					<button type="submit" class="btn btn-lg btn-default">Send</button>
