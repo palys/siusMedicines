@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import siusMedicines.model.Medicine;
+import siusMedicines.model.Patient;
 import siusMedicines.model.Portion;
 import siusMedicines.model.Prescription;
 import siusMedicines.service.PortionService;
@@ -106,7 +107,8 @@ public class PatientPanelController {
 	
 	@RequestMapping(value = "/personal", method = RequestMethod.GET)
 	public ModelAndView preparePersonalDataPanel(ModelAndView modelAndView, Principal user) {
-
+		Patient patient = userService.findById(user.getName()).getPatients().iterator().next();
+		modelAndView.addObject("patient", patient);
 		return modelAndView;
 	}
 	

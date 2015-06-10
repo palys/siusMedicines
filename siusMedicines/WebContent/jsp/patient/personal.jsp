@@ -42,7 +42,37 @@
 			<a class="btn btn-lg btn-default" href="panel" role="button">Back</a>
 		</p>
 		
-		
+		<div class="tab-content" style="margin-left: 30%; margin-right: 30%" align="center">
+			<div id="personal_data" class="tab-pane fade in active">
+				<div class="panel panel-default">
+					<div class="panel-heading">Personal Data</div>
+					<table class="table table-hover">
+							<col width="50%">
+							<col width="50%">
+								<tr>
+									<td align="right"><b>Name</b></td>
+									<td></span>&nbsp; &nbsp;<c:out value="${patient.name}" /></td>
+								</tr>
+								<tr>
+									<td align="right"><b>Surname</b></td>
+									<td></span>&nbsp; &nbsp;<c:out value="${patient.surname}" /></td>
+								</tr>
+								<tr>
+									<td align="right"><b>Pesel</b></td>
+									<td></span>&nbsp; &nbsp;<c:out value="${patient.pesel}" /></td>
+								</tr>
+								<tr>
+									<td align="right"><b>Phone Number</b></td>
+									<td></span>&nbsp; &nbsp;<c:out value="${patient.phoneNumber}" /></td>
+								</tr>
+								<tr>
+									<td align="right"><b>Birthdate</b></td>
+									<td></span>&nbsp; &nbsp;<c:out value="${patient.birthdate}" /></td>
+								</tr>
+						</table>
+				</div>
+			</div>
+		</div>
 		
 	</div>
 		<script src="https://code.jquery.com/jquery.js"></script>
