@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import siusMedicines.mail.MailUtils;
+import siusMedicines.model.Doctor;
 import siusMedicines.model.Medicine;
 import siusMedicines.model.Patient;
 import siusMedicines.model.Portion;
 import siusMedicines.model.Prescription;
+import siusMedicines.service.DoctorService;
 import siusMedicines.service.PortionService;
 import siusMedicines.service.UserService;
 
@@ -54,6 +57,7 @@ public class PatientPanelController {
 	int ELEMENTS_TO_DISPLAY = 4;
 	UserService userService = new UserService();
 	PortionService portionService = new PortionService();
+	DoctorService doctorService = new DoctorService();
 	
 	@RequestMapping(value = "/panel", method = RequestMethod.GET)
 	public ModelAndView preparePanel(ModelAndView modelAndView, Principal user) {
@@ -141,8 +145,21 @@ public class PatientPanelController {
 	
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public ModelAndView prepareContactPanel(ModelAndView modelAndView, Principal user) {
-
+		List<Doctor> doctors = doctorService.findAll();
+		modelAndView.addObject("doctors", doctors);
+		modelAndView.addObject("mail", new MailHolder());
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	public String sendMail(@ModelAttribute("mail") MailHolder mail,
+			BindingResult bindingResult, Principal principal) {
+
+		String message = "Message sent from user " + principal.getName() + "\n" +
+				mail.getMessage() + "\n\nSiusMadicines";
+		MailUtils.sendMail(mail.getAddress(), mail.getSubject(), message);
+		
+		return "redirect:/patient/panel";
 	}
 	
 	@RequestMapping(value = "/settings", method = RequestMethod.GET)

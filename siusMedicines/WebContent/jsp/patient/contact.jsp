@@ -45,6 +45,35 @@
 		
 		
 	</div>
+	
+	<div class="container">
+			<form:form modelAttribute="mail" role="form" method="post"
+				action="/siusMedicines/patient/contact">
+				<div class="form-group">
+					<label for="name">Doctor:</label>
+					<form:select path="address" class="form-control" id="address">
+						<c:forEach items="${doctors}" var="doc" varStatus="loop"> 
+						 	<form:option value="${doc.email}"><c:out value="${doc.name} ${doc.surname}"/></form:option>
+						</c:forEach>
+					</form:select>
+				</div>
+				<div class="form-group">
+					<label for="subject">Subject:</label>
+					<form:input path="subject" type="text" class="form-control" id="subject"
+						placeholder="Enter subject"></form:input>
+				</div>
+				<div class="form-group">
+					<label for="message">Message:</label>
+					<form:input path="message" type="text" class="form-control" id="message"
+						placeholder="Enter message here" style="height:300px;"></form:input>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-lg btn-default">Send</button>
+				</div>
+			</form:form>
+		</div>
+	
+	
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
