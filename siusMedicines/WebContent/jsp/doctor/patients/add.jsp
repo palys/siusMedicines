@@ -69,16 +69,18 @@
 					<form:input path="birthdate" type="date" class="form-control" id="birthdate"
 						placeholder="Enter birth date in format yyyy-mm-dd" value="${patient.birthdate}"></form:input>
 				</div>
-				<div class="form-group">
-					<label for="username">Login:</label>
-					<form:input path="user.username" type="text" class="form-control" id="username"
-						placeholder="Enter login" value="${patient.user.username}"></form:input>
-				</div>
-				<div class="form-group">
-					<label for="password">Password:</label>
-					<form:input path="user.password" type="password" class="form-control" id="password"
-						placeholder="Enter password" value="${patient.user.password}"></form:input>
-				</div>
+				<c:if test="${patient.name == null}">
+					<div class="form-group">
+						<label for="username">Login:</label>
+						<form:input path="user.username" type="text" class="form-control" id="username"
+							placeholder="Enter login" value="${patient.user.username}"></form:input>
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<form:input path="user.password" type="password" class="form-control" id="password"
+							placeholder="Enter password" value="${patient.user.password}"></form:input>
+					</div>
+				</c:if>
 				<div class="form-group">
 					<form:input path="id" type="hidden" class="form-control" value="${patient.id}"/>
 				</div>
