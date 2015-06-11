@@ -14,6 +14,16 @@ public class PortionWithFrequencyHolder {
 	private String patientId;
 	
 	private String prescriptionId;
+	
+	private int daysGap;
+
+	public int getDaysGap() {
+		return daysGap;
+	}
+
+	public void setDaysGap(int daysGap) {
+		this.daysGap = daysGap;
+	}
 
 	public String getUnit() {
 		return unit;

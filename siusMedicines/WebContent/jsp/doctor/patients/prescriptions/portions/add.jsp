@@ -68,7 +68,7 @@
 						placeholder="Enter number of portions"></form:input>
 				</div>
 				<div class="form-group">
-					<label for="firstPortionDate">FirstPortionDate:</label>
+					<label for="firstPortionDate">Date of first portion:</label>
 					<form:input path="firstPortionDate" type="datetime-local" class="form-control" id="firstPortionDate"></form:input>
 				</div>
 				<div class="form-group">
@@ -78,6 +78,11 @@
 				<div class="form-group">
 					<form:input path="prescriptionId" type="hidden" class="form-control" id="prescriptionId"
 						value="${pageContext.request.parameterMap['prescription_id'][0]}"></form:input>
+				</div>
+				<div class="form-group">
+					<label for="daysGap">Gap between portions (in days):</label>
+					<form:input path="daysGap" type="text" class="form-control" id="daysGap"
+						value="1"></form:input>
 				</div>
 				<div class="form-actions">
 					<button type="submit" class="btn btn-lg btn-default">Add</button>

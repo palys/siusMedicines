@@ -122,7 +122,7 @@ public class PrescriptionsController {
 			portion.setDeclined(false);
 			portion.setDeclineReason("");
 			portion.setUnit(p.getUnit());
-			portion.setTakeTime(new Timestamp(startTime + (i * 1000 * 60 * 60 * 24)));
+			portion.setTakeTime(new Timestamp(startTime + (i * 1000 * 60 * 60 * 24 * p.getDaysGap())));
 			portionService.persist(portion);
 
 		}
