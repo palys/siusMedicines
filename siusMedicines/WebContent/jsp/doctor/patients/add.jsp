@@ -81,6 +81,16 @@
 							placeholder="Enter password" value="${patient.user.password}"></form:input>
 					</div>
 				</c:if>
+				<c:if test="${patient.name != null}">
+					<div class="form-group">
+						<form:input path="user.username" type="hidden" class="form-control" id="username"
+							placeholder="Enter login" value="${patient.user.username}"></form:input>
+					</div>
+					<div class="form-group">
+						<form:input path="user.password" type="hidden" class="form-control" id="password"
+							placeholder="Enter password" value="${patient.user.password}"></form:input>
+					</div>
+				</c:if>
 				<div class="form-group">
 					<form:input path="id" type="hidden" class="form-control" value="${patient.id}"/>
 				</div>
