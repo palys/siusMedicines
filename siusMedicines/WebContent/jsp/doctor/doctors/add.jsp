@@ -69,18 +69,38 @@
 					<form:input path="spetialization" type="text" class="form-control" id="specialization"
 						placeholder="Enter specialization" value="${doctor.spetialization}"></form:input>
 				</div>
+				<c:if test="${doctor.name == null}">
+					<div class="form-group">
+						<label for="username">Login:</label>
+						<form:input path="user.username" type="text" class="form-control" id="username"
+							placeholder="Enter login" value="${doctor.user.username}"></form:input>
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<form:input path="user.password" type="password" class="form-control" id="password"
+							placeholder="Enter password" value="${doctor.user.password}"></form:input>
+					</div>
+				</c:if>
+				<c:if test="${doctor.name != null}">
+					<div class="form-group">
+						<form:input path="user.username" type="hidden" class="form-control" id="username"
+							value="${doctor.user.username}"></form:input>
+					</div>
+					<div class="form-group">
+						<form:input path="user.password" type="hidden" class="form-control" id="password"
+							value="${doctor.user.password}"></form:input>
+					</div>
+					<div class="form-group">
+						<form:input path="user.enabled" type="hidden" class="form-control" id="enabled"
+							value="${doctor.user.enabled}"></form:input>
+					</div>
+					<div class="form-group">
+						<form:input path="user.userRole" type="hidden" class="form-control" id="userRole"
+							value="${doctor.user.userRole}"></form:input>
+					</div>
+				</c:if>
 				<div class="form-group">
-					<label for="username">Login:</label>
-					<form:input path="user.username" type="text" class="form-control" id="username"
-						placeholder="Enter login" value="${doctor.user.username}"></form:input>
-				</div>
-				<div class="form-group">
-					<label for="password">Password:</label>
-					<form:input path="user.password" type="password" class="form-control" id="password"
-						placeholder="Enter password" value="${doctor.user.password}"></form:input>
-				</div>
-				<div class="form-group">
-					<form:input path="id" type="hidden" class="form-control" value="${patient.id}"/>
+					<form:input path="id" type="hidden" class="form-control" value="${doctor.id}"/>
 				</div>
 				<div class="form-actions">
 					<c:if test="${doctor.name == null}">

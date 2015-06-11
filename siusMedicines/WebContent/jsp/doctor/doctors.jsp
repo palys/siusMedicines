@@ -51,17 +51,19 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Doctors</div>
 					<table class="table table-hover">
-						<col width="20%">
-						<col width="20%">
-						<col width="20%">
-						<col width="20%">
-						<col width="20%">
+						<col width="19%">
+						<col width="19%">
+						<col width="19%">
+						<col width="19%">
+						<col width="19%">
+						<col width="5%">
 						<tr>
 							<th>Name</th>
 							<th>Surname</th>
 							<th>Phone number</th>
 							<th>Email</th>
 							<th>Specialization</th>
+							<th></th>
 						</tr>
 						<c:forEach items="${doctors}" var="doc"
 							varStatus="loop">
@@ -71,6 +73,10 @@
 								<td><c:out value="${doc.phoneNumber}" /></td>
 								<td><c:out value="${doc.email}" /></td>
 								<td><c:out value="${doc.spetialization}" /></td>
+								<td><a class="btn btn-default"
+									href="${pageContext.request.contextPath}/doctor/doctors/add?doctor_id=${doc.id}">
+										<span class="glyphicon glyphicon-pencil"></span>
+								</a></td>
 							</tr>
 						</c:forEach>
 					</table>
