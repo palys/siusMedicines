@@ -50,8 +50,7 @@
 			<a class="btn btn-lg btn-default"
 				href="${pageContext.request.contextPath}/doctor/patients" role="button">Back</a>
 		</p>
-		
-		<div class="container">
+
 			<form:form modelAttribute="medicine" role="form" method="post"
 				action="/siusMedicines/doctor/patients/prescriptions/add?patient_id=${patient_id}">
 				<div class="form-group">
@@ -66,20 +65,22 @@
 					<button type="submit" class="btn btn-lg btn-default">Add</button>
 				</div>
 			</form:form>
-		</div>
+
 
 		<div class="tab-content">
 			<div id="patients_table" class="tab-pane fade in active">
 				<div class="panel panel-default">
 					<div class="panel-heading">Prescriptions</div>
 					<table class="table table-hover">
-						<col width="30%">
-						<col width="30%">
-						<col width="15%">
-						<col width="15%">
+						<col width="2%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="27%">
 						<col width="5%">
 						<col width="5%">
 						<tr>
+							<th></th>
 							<th>Medicine</th>
 							<th>Next portion</th>
 							<th>Portions left</th>
@@ -96,15 +97,16 @@
 												<c:out value="white"/>
 											</c:otherwise>
 										</c:choose>>
+								<td></td>
 								<td><c:out value="${prescriptions_list.prescription.medicine.name}" /></td>
 								<td><c:out value="${prescriptions_list.nextPortion}"/></td>
 								<td><c:out value="${prescriptions_list.portionsLeft}"/></td>
 								<td><c:out value="${prescriptions_list.totalPortionsNumber}" /></td>
-								<td><a class="btn btn-default"
+								<td><a title="Edit" class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/patients/prescriptions/portions?patient_id=${patient_id}&prescription_id=${prescriptions_list.prescription.id}">
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a></td>
-								<td><a class="btn btn-default"
+								<td><a title="Delete" class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/patients/prescriptions/remove?patient_id=${patient_id}">
 										<span class="glyphicon glyphicon-remove"></span>
 								</a></td>
