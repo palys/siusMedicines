@@ -144,7 +144,9 @@ public class PrescriptionsController {
 			h.setTakeTime(p.getTakeTime());
 			h.setTaken(p.isTaken());
 			h.setShouldBeTaken(!p.isTaken() && currentTimestamp.after(p.getTakeTime()));
-			h.setShowWarning(!h.isTaken() && h.isShouldBeTaken());
+			h.setShowWarning(!h.isTaken() && h.isShouldBeTaken() && !p.isDeclined());
+			h.setDeclined(p.isDeclined());
+			h.setReason(p.getDeclineReason());
 			
 			holders.add(h);
 		}

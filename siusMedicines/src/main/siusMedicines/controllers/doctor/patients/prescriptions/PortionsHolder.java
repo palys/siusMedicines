@@ -17,6 +17,10 @@ public class PortionsHolder implements Comparable<PortionsHolder> {
 	private boolean shouldBeTaken;
 	
 	private boolean showWarning;
+	
+	private boolean declined;
+	
+	private String reason;
 
 	public Long getId() {
 		return id;
@@ -72,6 +76,22 @@ public class PortionsHolder implements Comparable<PortionsHolder> {
 
 	public void setShowWarning(boolean showWarning) {
 		this.showWarning = showWarning;
+	}
+
+	public boolean isDeclined() {
+		return declined;
+	}
+
+	public void setDeclined(boolean declined) {
+		this.declined = declined;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 	@Override
