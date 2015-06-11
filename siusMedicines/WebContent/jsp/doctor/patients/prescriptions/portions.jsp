@@ -74,16 +74,16 @@
 						<c:forEach items="${portions}" var="portion"
 							varStatus="loop">
 							<tr>
-								<td><c:if test="${portion.showWarning}"><span class="glyphicon glyphicon-exclamation-sign"></span></c:if></td>
+								<td><c:if test="${portion.showWarning}"><span class="glyphicon glyphicon-exclamation-sign" style="color:orange"></span></c:if></td>
 								<td><c:out value="${portion.takeTime}" /></td>
 								<td><c:out value="${portion.unit}"/></td>
 								<td><c:out value="${portion.size}"/></td>
 								<td><c:choose>
 										<c:when test="${portion.taken}">
-											<span class="glyphicon glyphicon-ok"></span>
+											<span class="glyphicon glyphicon-ok" style="color:green"></span>
 										</c:when>
 										<c:otherwise>
-											<span class="glyphicon glyphicon-remove"></span>
+											<span class="glyphicon glyphicon-remove" style="color:red"></span>
 										</c:otherwise>
 									</c:choose>
 								</td>
@@ -91,9 +91,9 @@
 										<c:when test="${portion.declined}">
 											<span class="glyphicon glyphicon-ok"></span>
 										</c:when>
-										<c:otherwise>
-											<span class="glyphicon glyphicon-remove"></span>
-										</c:otherwise>
+										<c:when test="${portion.declined == false && portion.taken == false}">
+											<span class="glyphicon glyphicon-remove" style="color:red"></span>
+										</c:when>
 									</c:choose>
 								</td>
 								<td><c:if test="${portion.declined}"><c:out value="${portion.reason}"/></c:if></td>
