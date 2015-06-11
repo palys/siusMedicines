@@ -57,34 +57,42 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Patients</div>
 					<table class="table table-hover">
-						<col width="25%">
-						<col width="25%">
-						<col width="35%">
+					
+						<col width="2%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="23%">
 						<col width="5%">
 						<col width="5%">
 						<col width="5%">
 						<tr>
+							<th></th>
 							<th>Name</th>
 							<th>Surname</th>
 							<th>Pesel</th>
+							<th>Phone Number</th>
+							<th></th>
 							<th></th>
 							<th></th>
 						</tr>
 						<c:forEach items="${patients}" var="patients_list"
 							varStatus="loop">
 							<tr>
+								<td></td>
 								<td><c:out value="${patients_list.name}" /></td>
 								<td><c:out value="${patients_list.surname}" /></td>
 								<td><c:out value="${patients_list.pesel}"/></td>
-								<td><a class="btn btn-default"
+								<td><c:out value="${patients_list.phoneNumber}"/></td>
+								<td><a title="Prescriptions" class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/patients/prescriptions?patient_id=${patients_list.id}">
 										<span class="glyphicon glyphicon-list-alt"></span>
 								</a></td>
-								<td><a class="btn btn-default"
+								<td><a title="Edit" class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/patients/add?patient_id=${patients_list.id}">
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a></td>
-								<td><a class="btn btn-default"
+								<td><a title="Delete" class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/patients/remove?patient_id=${patients_list.id}">
 										<span class="glyphicon glyphicon-remove"></span>
 								</a></td>
