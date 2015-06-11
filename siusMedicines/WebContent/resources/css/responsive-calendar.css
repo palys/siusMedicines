@@ -11,6 +11,19 @@
 .responsive-calendar .days {
   font-size: 0;
 }
+
+.responsive-calendar .today{
+  background-color: #4eb381;
+}
+
+.responsive-calendar .today .active{
+  background-color: #22a062;
+}
+
+.responsive-calendar .today a:hover{
+  background-color: #4eb381;
+}
+
 .responsive-calendar .day {
   display: inline-block;
   position: relative;
@@ -31,12 +44,12 @@
 .responsive-calendar .day.header {
   border-bottom: 1px gray solid;
 }
-.responsive-calendar .day.active a {
+/*.responsive-calendar .day.active a {
   background-color: #1d86c8;
   color: #ffffff;
-}
+}*/
 .responsive-calendar .day.active a:hover {
-  background-color: #3392cd;
+  background-color: #22a062;
 }
 .responsive-calendar .day.active .not-current {
   background-color: #8fcaef;
@@ -54,17 +67,6 @@
   right: 10px;
   z-index: 1;
   background-color: #14603a;
-}
-.responsive-calendar .today {
-  border-color : #22a062;
-}
-
-.responsive-calendar .today{
-  background-color: #22a062;
-}
-
-.responsive-calendar .today a:hover{
-  background-color: #4eb381;
 }
 
 .responsive-calendar .past{
