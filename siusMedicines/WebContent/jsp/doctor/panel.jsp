@@ -32,6 +32,21 @@
 			<h2>Medicines manager doctor panel</h2>
 		</div>
 
+
+	
+			<p>
+				<a class="btn btn-lg btn-default btn-block" href="medicines" role="button">Manage
+					medicines</a>
+			</p>
+			<p>
+				<a class="btn btn-lg btn-default btn-block" href="patients" role="button">Manage
+					patients</a>
+			</p>
+			<p>
+				<a class="btn btn-lg btn-default btn-block" href="doctors" role="button">Manage
+					doctors</a>
+			</p>
+		
 		<c:url value="/j_spring_security_logout" var="logoutUrl" />
 
 		<!-- csrt for log out-->
@@ -39,19 +54,6 @@
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 		</form>
-
-		<p>
-			<a class="btn btn-lg btn-default" href="medicines" role="button">Manage
-				medicines</a>
-		</p>
-		<p>
-			<a class="btn btn-lg btn-default" href="patients" role="button">Manage
-				patients</a>
-		</p>
-		<p>
-			<a class="btn btn-lg btn-default" href="doctors" role="button">Manage
-				doctors</a>
-		</p>
 	</div>
 </body>
 </html>
