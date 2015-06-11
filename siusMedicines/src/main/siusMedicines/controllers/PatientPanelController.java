@@ -243,8 +243,8 @@ public class PatientPanelController {
 				Calendar c = Calendar.getInstance();
 				c.setTimeInMillis(t.getTime());
 				String year = Integer.toString(c.get(Calendar.YEAR));
-				String month = Integer.toString(c.get(Calendar.MONTH) + 1);
-				String day = Integer.toString(c.get(Calendar.DAY_OF_MONTH));
+				String month = (c.get(Calendar.MONTH) < 9 ? "0" : "") + Integer.toString(c.get(Calendar.MONTH) + 1);
+				String day = (c.get(Calendar.DAY_OF_MONTH) < 10 ? "0" : "") + Integer.toString(c.get(Calendar.DAY_OF_MONTH));
 				String date = year + "-" + month + "-" + day;
 				
 				if(dailyCounts.containsKey(date)){

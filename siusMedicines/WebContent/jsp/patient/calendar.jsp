@@ -20,18 +20,58 @@
 	</script>
 	<script>
 	$(document).ready(function () {
+		
 		var date = new Date();
 		var year = date.getFullYear();
 		var month = date.getMonth() + 1;
 		var time = year + "-" + month;
+		
+		var dailyCountsString = $("[id^='cal']").data('counts');
+		var map = {};
+		
+		var t = dailyCountsString.replace(new RegExp("=","g"),":");
+		t = t.replace(new RegExp("{","g"),"");
+		t = t.replace(new RegExp("}","g"),"");
+		t = t.replace(new RegExp(" ","g"),"");
+		var items = t.split(",");
+		
+		for(var i in items){
+			var splited = items[i].split(":");
+			var key = splited[0];
+			var value = splited[1];
+			map[key] = value;
+		}
+		
+		var events = {};
+		
+		for(var i in map){
+			events[i] = {"number" : map[i]};
+		}
+
+		var dailyPortions = $("[id^='cal']").data('portions');
+		
+		function addLeadingZero(num) {
+		    if (num < 10) {
+		      return "0" + num;
+		    } else {
+		      return "" + num;
+		    }
+		  }
+		
+		
         $(".responsive-calendar").responsiveCalendar({
           time: time,
           allRows : false,
-          events: {
-            "2015-04-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
-            "2015-04-26": {"number": 1, "url": "http://w3widgets.com"}, 
-            "2015-06-03":{"number": 1}, 
-            "2015-06-12": {}}
+          events: events,
+          onActiveDayClick: function(events) {
+            var thisDayEvent, key;
+
+            key = $(this).data('year')+'-'+addLeadingZero( $(this).data('month') )+'-'+addLeadingZero( $(this).data('day') );
+            thisDayEvent = events[key];
+            $('#modal2').trigger('openModal');
+            $('#dateID').attr("title", key);
+            $('#varID').attr("value", key);
+          }
         });
       });
     </script>
@@ -64,7 +104,7 @@
 		
 		<div class="container">
       <!-- Responsive calendar - START -->
-    	<div class="responsive-calendar">
+    	<div id="cal" class="responsive-calendar" data-counts="${dailyCounts}" data-portions="${dailyPortions}">
         <div class="controls">
             <a class="pull-left" data-go="prev"><div class="btn btn-primary">Previous Month</div></a>
             <h4><span data-head-year></span> <span data-head-month></span></h4>
@@ -87,7 +127,55 @@
     </div>
 		
 	</div>
+	 
+	<div class="easy-modal" id="modal2">
+		<h3>This modal has no inner div <span id="dateID"></span></h3>
+		<var id="varID"></var>
+		<c:forEach var="portion" items="${dailyPortions}">
+		<c:out value="${portion.key}" />
+			
+		</c:forEach>
+		<button class="easy-modal-close" title="Close">&times;</button>
+	</div>
+	
+	<script type="text/javascript">
+	$(function() {
+		$('.easy-modal').easyModal({
+			top: 200,
+			overlay: 0.2
+		});
+
+		$('.easy-modal-open').click(function(e) {
+			var target = $(this).attr('href');
+			$(target).trigger('openModal');
+			e.preventDefault();
+		});
+
+		$('.easy-modal-close').click(function(e) {
+			$('.easy-modal').trigger('closeModal');
+		});
+
+		$('.easy-modal-animated').easyModal({
+			top: 200,
+			overlay: 0.2,
+			transitionIn: 'animated bounceInLeft',
+			transitionOut: 'animated bounceOutRight',
+			closeButtonClass: '.animated-close'
+		});
+	});
+	</script>
+	<style type="text/css">
+	body 
+	.easy-modal,
+	.easy-modal-animated {
+		width: 600px;
+		padding: 2em;
+		box-shadow: 1px 1px 3px rgba(0,0,0,0.35);
+		background-color: white;
+	}
+	</style>
 
 <script src="<c:url value='/resources/js/responsive-calendar.js'/>"></script>
+<script src="<c:url value='/resources/js/jquery.easyModal.js'/>"></script>
 </body>
 </html>
