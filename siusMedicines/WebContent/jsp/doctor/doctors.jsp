@@ -46,6 +46,38 @@
 				href="${pageContext.request.contextPath}/doctor/panel" role="button">Back</a>
 		</p>
 		
+		<div class="tab-content">
+			<div id="docs" class="tab-pane fade in active">
+				<div class="panel panel-default">
+					<div class="panel-heading">Doctors</div>
+					<table class="table table-hover">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<tr>
+							<th>Name</th>
+							<th>Surname</th>
+							<th>Phone number</th>
+							<th>Email</th>
+							<th>Specialization</th>
+						</tr>
+						<c:forEach items="${doctors}" var="doc"
+							varStatus="loop">
+							<tr>
+								<td><c:out value="${doc.name}" /></td>
+								<td><c:out value="${doc.surname}" /></td>
+								<td><c:out value="${doc.phoneNumber}" /></td>
+								<td><c:out value="${doc.email}" /></td>
+								<td><c:out value="${doc.spetialization}" /></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 </body>
 </html>
