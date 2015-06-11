@@ -79,6 +79,9 @@
 					<form:input path="user.password" type="password" class="form-control" id="password"
 						placeholder="Enter password" value="${patient.user.password}"></form:input>
 				</div>
+				<div class="form-group">
+					<form:input path="id" type="hidden" class="form-control" value="${patient.id}"/>
+				</div>
 				<div class="form-actions">
 					<c:if test="${patient.name == null}">
 						<button type="submit" class="btn btn-lg btn-default">Add</button>

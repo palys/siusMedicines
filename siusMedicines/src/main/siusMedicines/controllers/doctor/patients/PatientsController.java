@@ -38,7 +38,8 @@ public class PatientsController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String patientsAdd(@ModelAttribute("patient") Patient patient, BindingResult bindingResult) {
-		if (userService.findById(patient.getUser().getUsername()) != null) {
+		//if (userService.findById(patient.getUser().getUsername()) != null) {
+		if (patient.getId() != null) {
 			patientService.update(patient);
 		} else {
 			patient.getUser().setEnabled(true);
