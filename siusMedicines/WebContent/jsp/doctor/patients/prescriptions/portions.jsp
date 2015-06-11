@@ -55,18 +55,20 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Prescriptions</div>
 					<table class="table table-hover">
+						<col width="2%">
 						<col width="5%">
 						<col width="15%">
-						<col width="5%">
-						<col width="5%">
-						<col width="5%">
-						<col width="5%">
-						<col width="30%">
+						<col width="8%">
+						<col width="8%">
+						<col width="8%">
+						<col width="8%">
+						<col width="20%">
 						<tr>
 							<th></th>
+							<th></th>
 							<th>Time to take</th>
-							<th>Unit</th>
 							<th>Size</th>
+							<th>Unit</th>
 							<th>Taken</th>
 							<th>Declined</th>
 							<th>Reason</th>
@@ -74,10 +76,11 @@
 						<c:forEach items="${portions}" var="portion"
 							varStatus="loop">
 							<tr>
+								<td></td>
 								<td><c:if test="${portion.showWarning}"><span class="glyphicon glyphicon-exclamation-sign" style="color:orange"></span></c:if></td>
 								<td><c:out value="${portion.takeTime}" /></td>
-								<td><c:out value="${portion.unit}"/></td>
 								<td><c:out value="${portion.size}"/></td>
+								<td><c:out value="${portion.unit}"/></td>
 								<td><c:choose>
 										<c:when test="${portion.taken}">
 											<span class="glyphicon glyphicon-ok" style="color:green"></span>
