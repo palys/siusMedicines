@@ -57,7 +57,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Patients</div>
 					<table class="table table-hover">
-						<col width="50%">
+						<col width="25%">
+						<col width="25%">
 						<col width="35%">
 						<col width="5%">
 						<col width="5%">
@@ -65,6 +66,7 @@
 						<tr>
 							<th>Name</th>
 							<th>Surname</th>
+							<th>Pesel</th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -73,6 +75,7 @@
 							<tr>
 								<td><c:out value="${patients_list.name}" /></td>
 								<td><c:out value="${patients_list.surname}" /></td>
+								<td><c:out value="${patients_list.pesel}"/></td>
 								<td><a class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/patients/prescriptions?patient_id=${patients_list.id}">
 										<span class="glyphicon glyphicon-list-alt"></span>
