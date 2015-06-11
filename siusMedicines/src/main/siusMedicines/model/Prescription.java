@@ -127,6 +127,21 @@ public class Prescription {
 		}
 		return new Date(nextPortionDate.getTime());
 	}
+	
+	public boolean hasUntakenPortions() {
+		
+		boolean hasUntaken = false;
+		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+		
+		for (Portion p : portions) {
+			if (!p.isTaken() && p.getTakeTime().before(currentTime)) {
+				hasUntaken = true;
+				break;
+			}
+		}
+		
+		return hasUntaken;
+	}
 
 	@Override
 	public String toString() {

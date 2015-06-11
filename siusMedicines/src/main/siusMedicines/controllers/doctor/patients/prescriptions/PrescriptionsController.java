@@ -164,6 +164,8 @@ public class PrescriptionsController {
 			h.setPortionsLeft(p.portionsLeft());
 			h.setTotalPortionsNumber(p.totalPortions());
 			h.setNextPortion(format.format(p.nextPortionDate()));
+			h.setHasUntakenPortions(p.hasUntakenPortions());
+			
 			holders.add(h);
 		}
 		

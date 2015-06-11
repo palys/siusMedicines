@@ -11,6 +11,8 @@ public class PrescriptionHolder {
 	private int portionsLeft;
 	
 	private String nextPortion;
+	
+	private boolean hasUntakenPortions;
 
 	public Prescription getPrescription() {
 		return prescription;
@@ -42,6 +44,14 @@ public class PrescriptionHolder {
 
 	public void setNextPortion(String nextPortion) {
 		this.nextPortion = nextPortion;
+	}
+
+	public boolean isHasUntakenPortions() {
+		return hasUntakenPortions;
+	}
+
+	public void setHasUntakenPortions(boolean hasUntakenPortions) {
+		this.hasUntakenPortions = hasUntakenPortions;
 	}
 	
 	

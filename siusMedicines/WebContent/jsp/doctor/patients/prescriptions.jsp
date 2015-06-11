@@ -88,7 +88,14 @@
 						</tr>
 						<c:forEach items="${prescriptions}" var="prescriptions_list"
 							varStatus="loop">
-							<tr>
+							<tr bgcolor=<c:choose>
+											<c:when test="${prescriptions_list.hasUntakenPortions}">
+												<c:out value="#FFCCCC"/>
+											</c:when>
+											<c:otherwise>
+												<c:out value="white"/>
+											</c:otherwise>
+										</c:choose>>
 								<td><c:out value="${prescriptions_list.prescription.medicine.name}" /></td>
 								<td><c:out value="${prescriptions_list.nextPortion}"/></td>
 								<td><c:out value="${prescriptions_list.portionsLeft}"/></td>
