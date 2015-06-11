@@ -65,9 +65,9 @@
 								varStatus="loop">
 								<tr>
 									<td></td>
-									<td></span>&nbsp; &nbsp;<c:out value="${medicine_item.name}" /></td>
-									<td></span>&nbsp; &nbsp;<c:out value="${medicine_item.description}" /></td>
-									<td></span>&nbsp; &nbsp;<c:out value="${medicine_item.mealInfo}" /></td>
+									<td>&nbsp; &nbsp;<c:out value="${medicine_item.name}" /></td>
+									<td>&nbsp; &nbsp;<c:out value="${medicine_item.description}" /></td>
+									<td>&nbsp; &nbsp;<c:out value="${medicine_item.mealInfo}" /></td>
 								</tr>
 							</c:forEach>
 						</table>

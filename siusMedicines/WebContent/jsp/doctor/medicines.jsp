@@ -53,17 +53,29 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Medicines</div>
 					<table class="table table-hover">
-						<col width="95%">
+						<col width="2%">
+						<col width="15%">
+						<col width="57%">
+						<col width="2%">
+						<col width="17%">
 						<col width="5%">
 						<tr>
+							<th></th>
 							<th>Medicine name</th>
+							<th>Description</th>
+							<th></th>
+							<th>Meal Requirement</th>
 							<th></th>
 						</tr>
 						<c:forEach items="${medicines}" var="medicines_list"
 							varStatus="loop">
 							<tr>
+								<td></td>
 								<td><c:out value="${medicines_list.name}" /></td>
-								<td><a class="btn btn-default"
+								<td><c:out value="${medicines_list.description}" /></td>
+								<td></td>
+								<td><c:out value="${medicines_list.mealInfo}" /></td>
+								<td><a title="Delete" class="btn btn-default"
 									href="${pageContext.request.contextPath}/doctor/medicines/remove?medicine_name=${medicines_list.name}">
 										<span class="glyphicon glyphicon-remove"></span>
 								</a></td>
