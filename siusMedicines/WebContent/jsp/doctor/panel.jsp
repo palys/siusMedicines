@@ -48,6 +48,10 @@
 			<a class="btn btn-lg btn-default" href="patients" role="button">Manage
 				patients</a>
 		</p>
+		<p>
+			<a class="btn btn-lg btn-default" href="doctors" role="button">Manage
+				doctors</a>
+		</p>
 	</div>
 </body>
 </html>
