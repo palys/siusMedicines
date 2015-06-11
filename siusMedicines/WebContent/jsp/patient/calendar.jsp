@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/fmt' prefix='fmt'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +71,7 @@
             thisDayEvent = events[key];
             $('#modal2').trigger('openModal');
             $('#dateID').attr("title", key);
-            $('#varID').attr("value", key);
+            document.getElementById("myHperlink").innerHTML = key;
           }
         });
       });
@@ -129,13 +130,29 @@
 	</div>
 	 
 	<div class="easy-modal" id="modal2">
-		<h3>This modal has no inner div <span id="dateID"></span></h3>
-		<var id="varID"></var>
-		<c:forEach var="portion" items="${dailyPortions}">
-		<c:out value="${portion.key}" />
-			
-		</c:forEach>
-		<button class="easy-modal-close" title="Close">&times;</button>
+		<h3><span id="myHperlink"></span></h3>
+		<table class="table table-hover">
+							<col width="15%">
+							<col width="30%">
+							<col width="25%">
+							<col width="30%">
+							<tr>
+								<th>Time</th>
+								<th>Medicine Name</th>
+								<th>Quantity</th>
+								<th>Meal Requirement</th>
+							</tr>
+							<c:set var="dayq" value='2015-06-11'></c:set>
+							<c:forEach items="${dailyPortions[dayq]}" var="por">
+								<tr>
+									<td><fmt:formatDate value="${por.takeTime}" pattern="HH:mm"/></td>
+									<td><c:out value="${por.prescription.medicine.name}"/></td>
+									<td><c:out value="${por.size} ${por.unit}"/></td>
+									<td><c:out value="${por.prescription.medicine.mealInfo}"/></td>
+								</tr>
+							</c:forEach>
+							
+		</table>
 	</div>
 	
 	<script type="text/javascript">
